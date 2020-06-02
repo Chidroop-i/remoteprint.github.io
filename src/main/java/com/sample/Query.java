@@ -19,6 +19,7 @@ public class Query {
 
     int update(String orderNumber , String name , String college , String usn , String guideName , String department , String phoneNumber , String email , String color,String sides , String bindingColor , String fileName,int numberOfPages,int cost ,String transactionId, String status ) throws SQLException {
         try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url);
 
             String schema = connection.getSchema();

@@ -27,8 +27,7 @@ public class assetDeclare extends HttpServlet{
             System.out.println("Inside the submit call");
             Query query = new Query();
 
-           fileName =  req.getParameter("phoneNumber");
-
+           fileName =  req.getParameter("fileName");
            orderNumber = "RV_"+ req.getParameter("fileName");
            name = req.getParameter("name");
            college = req.getParameter("college");
@@ -41,8 +40,8 @@ public class assetDeclare extends HttpServlet{
            sides = req.getParameter("sides");
            bindingColor = req.getParameter("bindingColor");
           // fileName = req.getParameter("fileName");
-           numberOfPages = 2;
-           cost = 2;
+           numberOfPages = Integer.parseInt(req.getParameter("numberOfPages"));
+           cost = Integer.parseInt(req.getParameter("cost"));
            transactionId = req.getParameter("transactionId");
            status = "PAYMENT_VERIFICATION";
 

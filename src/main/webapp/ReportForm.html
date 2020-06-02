@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -565,7 +566,7 @@
 
                 <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
 
-                    <form action="submit" method="post" role="form" class="php-email-form">
+                    <form form action="submit" method="post" role="form" class="php-email-form">
 
                         <div class="form-group">
                             <label for="name">Full Name</label>
@@ -649,12 +650,20 @@
 
                         <div class="form-row">
                             <div class="form-group text-center">
-                                <a class="get-started-btn text-center" id="upload-button">Upload</a>
+                                <a class="get-started-btn text-center" id="upload-button">Select File</a>
                                 <input type="file" id="file-input" style="display: none;" accept=".pdf" /><br>
                             </div>
 
                             <div class="form-group">
-                                <input type="text" class="form-control" name="fileName" disabled />
+                                <input type="text" class="form-control" name="fileNameActual"id="fileNameActual" disabled />
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label id="uniqueFileNameLabel"></label>
+                                <input type="hidden" class="form-control" name="fileName"id="fileName" value="" />
+                                <input type="hidden" class="form-control" name="numberOfPages"id="numberOfPages" value="" />
                             </div>
                         </div>
 
@@ -663,6 +672,7 @@
                         </div>
 
                         <div id="Cost" class="text-center"></div>
+                        <input type="hidden" class="form-control" name="cost"id="cost" value="" />
 
                         <div id="QRCode" class="text-center"></div>
 
@@ -750,10 +760,17 @@
     const uploadFiles = async () => {
         try {
             const promises = [];
+
             for (const file of fileInput.files) {
-                const blockBlobURL = azblob.BlockBlobURL.fromContainerURL(containerURL, file.name);
-                promises.push(azblob.uploadBrowserDataToBlockBlob(
-                    azblob.Aborter.none, file, blockBlobURL));
+                var filetype=file.name.split("\.")[1];
+                if(file.type=="application/pdf"){
+                    const blockBlobURL = azblob.BlockBlobURL.fromContainerURL(containerURL, fileName+".pdf");
+                    promises.push(azblob.uploadBrowserDataToBlockBlob(
+                        azblob.Aborter.none, file, blockBlobURL));
+                }
+                else{
+                    //error comment for wrong file
+                }
             }
             await Promise.all(promises);
         } catch (error) {
@@ -776,10 +793,19 @@
     }
 
     function initiatePayment() {
+        fileName = generateUniqueID()
+        setFileName()
         uploadFiles()
         generateQRCode()
-    }
 
+    }
+    function setFileName()
+    {
+        var fileNameText=document.getElementById("uniqueFileNameLabel")
+        fileNameText.innerHTML=fileName;
+        var fileNameInput=document.getElementById("fileName");
+        fileNameInput.value=fileName;
+    }
     selectButton.addEventListener("click", () => fileInput.click());
     payButton.addEventListener("click", initiatePayment);
 
@@ -790,8 +816,8 @@
         reader.onloadend = function () {
             var count = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
             console.log('Number of Pages:', count);
-            fileName = generateUniqueID()
-            document.getElementsByName("fileName").innerHTML = '<input type="text" class="form-control" name="fileName" placeholder=' + fileName + 'disabled />'
+            document.getElementById("fileNameActual").value=fileInput.files[0].name
+            document.getElementById("numberOfPages").value=count
             calculateCost(count)
         }
     });
@@ -801,6 +827,7 @@
         upiName = 'shekar'
         bankName = 'citi'
         document.getElementById("Cost").innerHTML = '<strong> &#8377 ' + cost + '.00;</strong>';
+        document.getElementById("cost").value=cost
     }
 
     function generateQRCode() {

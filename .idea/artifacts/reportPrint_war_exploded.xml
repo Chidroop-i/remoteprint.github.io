@@ -1,17 +1,17 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="storeAnalytics:war exploded">
+  <artifact type="exploded-war" name="reportPrint:war exploded">
     <output-path>$PROJECT_DIR$/target/SampleServlet</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
-        <module>storeAnalytics</module>
+        <module>reportPrint</module>
         <packaging>war</packaging>
       </options>
     </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="storeAnalytics" />
+          <element id="module-output" name="reportPrint" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: com.microsoft.sqlserver:mssql-jdbc:7.0.0.jre8" />

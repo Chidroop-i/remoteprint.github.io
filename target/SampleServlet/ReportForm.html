@@ -25,6 +25,7 @@
     <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
     <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
 
 </head>
 
@@ -649,32 +650,55 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group text-center">
-                                <a class="get-started-btn text-center" id="upload-button">Select File</a>
-                                <input type="file" id="file-input" style="display: none;" accept=".pdf" /><br>
+                            <div class="form-group col-md-3">
+                                <a class="get-started-btn" id="upload-button" style="margin-left: 0px;">Select File</a>
+                                <input type="file" id="file-input" style="display: none;" accept=".pdf" />
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group col-md-9">
                                 <input type="text" class="form-control" name="fileNameActual"id="fileNameActual" disabled />
                             </div>
 
                         </div>
                         <div class="form-row">
-                            <div class="form-group">
-                                <label id="uniqueFileNameLabel"></label>
+                            
+                               
+                                
+                          <div id="Cost" style="font-size: large;">
+                          </div>
+                         
+                            
+                              <div class="grid-container">
+                              
                                 <input type="hidden" class="form-control" name="fileName"id="fileName" value="" />
                                 <input type="hidden" class="form-control" name="numberOfPages"id="numberOfPages" value="" />
+
+                                
+                                <input type="hidden" class="form-control" name="cost"id="cost" value="" />
+                                
+                                <div class="Payment">
+                      
+                                  <button class="get-started-btn text-center" id="pay-button" style="margin-left: 0px;">Pay</button>
+                                  <div class="Cost">
+                                    <br><strong><div id="uniqueFileNameLabel"  style="font-size: large;"></div></strong>
+                                  </div>
+                                  </div>
+                                  
+                                
+                                <div class="QRcode">
+                                 
+                                    <div id="QRCode" class="text-center">
+
+                                    </div>
+                                
+                              </div>
                             </div>
+      
+                            
+                          
                         </div>
 
-                        <div class="form-group text-center">
-                            <a class="get-started-btn text-center" id="pay-button">Pay</a>
-                        </div>
-
-                        <div id="Cost" class="text-center"></div>
-                        <input type="hidden" class="form-control" name="cost"id="cost" value="" />
-
-                        <div id="QRCode" class="text-center"></div>
+                       
 
                         <div class="form-group">
                             <label for="name">UPI Transaction ID</label>
@@ -739,11 +763,14 @@
     const payButton = document.getElementById("pay-button");
     const fileInput = document.getElementById("file-input");
     const fileSelector = document.getElementById('file-input');
+    const submitButton = document.getElementById('submit-button');
+    const costLabel= document.getElementById("Cost")
     var fileName
     var cost;
     var upiName;
     var bankName;
-
+    submitButton.disabled=true;
+    payButton.disabled=true;
     const reportStatus = message => {
         status.innerHTML += `${message}<br/>`;
         status.scrollTop = status.scrollHeight;
@@ -797,12 +824,14 @@
         setFileName()
         uploadFiles()
         generateQRCode()
+        submitButton.disabled=false;
+        payButton.disabled=true;
 
     }
     function setFileName()
     {
         var fileNameText=document.getElementById("uniqueFileNameLabel")
-        fileNameText.innerHTML=fileName;
+        fileNameText.innerHTML="Unique ID : "+fileName;
         var fileNameInput=document.getElementById("fileName");
         fileNameInput.value=fileName;
     }
@@ -813,20 +842,38 @@
         const fileList = event.target.files;
         var reader = new FileReader();
         reader.readAsBinaryString(fileList[0]);
+        submitButton.disabled=true;
+        resetPaymentInfo();
         reader.onloadend = function () {
             var count = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
             console.log('Number of Pages:', count);
             document.getElementById("fileNameActual").value=fileInput.files[0].name
             document.getElementById("numberOfPages").value=count
             calculateCost(count)
+            try{
+            if(fileInput.files[0].name)
+            {
+              payButton.disabled=false;
+            }
+            }
+            catch
+            {
+              console("File Not Selected Exception")
+            }
         }
     });
+    function resetPaymentInfo()
+    {
+      costLabel.innerHTML='';
+      document.getElementById("QRCode").innerHTML =''
+      document.getElementById("uniqueFileNameLabel").innerHTML=''
 
+    }
     function calculateCost(count) {
         cost = count * 10
         upiName = 'shekar'
         bankName = 'citi'
-        document.getElementById("Cost").innerHTML = '<strong> &#8377 ' + cost + '.00;</strong>';
+        costLabel.innerHTML = '<strong>  Estimated Cost : &#8377 ' + cost + '.00</strong>';
         document.getElementById("cost").value=cost
     }
 

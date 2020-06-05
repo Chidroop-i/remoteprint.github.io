@@ -16,11 +16,40 @@ body {
 a {
   color: #1699DF;
 }
-
-a:hover {
-  color: #206bfb;
-  text-decoration: none;
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "Payment QRcode" "Payment QRcode";
+  padding: 20px 0px;
+  width: 100%;
 }
+
+.Payment {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.4fr 1.6fr;
+  gap: 1px 1px;
+  grid-template-areas: "." "Cost";
+  grid-area: Payment;
+}
+
+.Cost { grid-area: Cost; }
+
+.QRcode { grid-area: QRcode; }
+a:hover {
+  color: #0057da;
+  text-decoration: none;
+
+}
+button:disabled
+{
+  background: #dddddd;
+  opacity: 0.65; 
+  cursor: not-allowed;
+}
+
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
@@ -996,10 +1025,11 @@ section {
 
 .contact .php-email-form {
   width: 100%;
-  border-top: 3px solid #1699DF;
-  border-bottom: 3px solid #1699DF;
+  /* border-top: 3px solid #1699DF;
+  border-bottom: 3px solid #1699DF; */
   padding: 30px;
-  background-color: #f9f9fa;
+  font-family: 'Montserrat', sans-serif;
+  /* background-color: #f9f9fa; */
 }
 
 .contact .php-email-form .form-group {
@@ -1061,10 +1091,14 @@ section {
 
 .contact .php-email-form input:focus, .contact .php-email-form textarea:focus {
   border-color: #1699DF;
+  background-color: rgba(24, 168, 245, 0.164);
+  color: rgb(0, 130, 236);
+  
 }
 
 .contact .php-email-form input {
-  /* height: 44px; */
+  height: 44px;
+  
 }
 
 .contact .php-email-form textarea {

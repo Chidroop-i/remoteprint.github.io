@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 
@@ -50,9 +51,13 @@ public class assetDeclare extends HttpServlet{
 
                 int result = query.update(orderNumber,name,college,usn,guideName,department,phoneNumber,email,color,sides,bindingColor,fileName,numberOfPages,cost,transactionId,status);
                 EmailClient.sendEmail(name,fileName,email);
+                PrintWriter writer=resp.getWriter();
+                writer.append("OK");
 
-                } catch (SQLException e) {
+                } catch (Exception e) {
                 e.printStackTrace();
+                PrintWriter writer=resp.getWriter();
+                writer.append("There seems to be a server side issue. Try again!");
             }
 
 
@@ -67,9 +72,13 @@ public class assetDeclare extends HttpServlet{
             try {
 
                 String status = query.query(orderNumber);
+                PrintWriter writer=resp.getWriter();
+                writer.append(status);
 
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+                PrintWriter writer=resp.getWriter();
+                writer.append("There seems to be a server side issue. Try again!");
             }
 
 

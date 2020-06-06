@@ -166,7 +166,7 @@
 
           <div class="col-sm-6">
 
-            <form form action="submit" method="post" role="form" class="php-email-form">
+            <form form action="submit" method="post" role="form" class="php-email-form" id="form-main">
 
               <div class="form-group">
                 <label for="name">Full Name</label>
@@ -303,6 +303,11 @@
 
               <div class="form-group text-center">
                 <button type="submit" id="submit-button" method="post">Submit</button>
+              </div>
+              <div class="mb-3">
+                <div class="loading" >Loading</div>
+                <div class="error-message" >Unable to load the "PHP Email Form" Library!</div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
             </form>
 
@@ -489,6 +494,8 @@
         console.log('Error in Azure Upload Function');
       }
     }
+    var fullForm=document.getElementById("form-main");
+    
     //AZURE FUNCTIONS END
   </script>
 

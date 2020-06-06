@@ -39,9 +39,9 @@ a {
 
 .QRcode { grid-area: QRcode; }
 a:hover {
-  color: #41af6f;
-  
-  color: white;
+  color: #0057da;
+  text-decoration: none;
+
 }
 button:disabled
 {

@@ -49,7 +49,7 @@ public class assetDeclare extends HttpServlet{
             try {
 
                 int result = query.update(orderNumber,name,college,usn,guideName,department,phoneNumber,email,color,sides,bindingColor,fileName,numberOfPages,cost,transactionId,status);
-
+                EmailClient.sendEmail(name,fileName,email);
 
                 } catch (SQLException e) {
                 e.printStackTrace();

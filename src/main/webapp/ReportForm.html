@@ -2,6 +2,16 @@
 <html lang="en">
 
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150138651-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-150138651-1');
+  </script>
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -163,7 +173,9 @@
                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
                   </div>
                 </div> -->
-
+                <div class="col-sm-6" style="object-fit: contain;">
+                  <img src="assets/img/FormArtWork.svg" alt="Workflow Diagram" style="object-fit: contain;width: 100%;">
+                </div>
           <div class="col-sm-6">
 
             <form form action="submit" method="post" role="form" class="php-email-form" id="form-main">
@@ -312,9 +324,7 @@
             </form>
 
           </div>
-          <div class="col-sm-6" style="object-fit: contain;">
-            <img src="assets/img/FormArtWork.svg" alt="Workflow Diagram" style="object-fit: contain;width: 100%;">
-          </div>
+          
         </div>
         <div>
           <div class="alertSuccess col-sm-6" id='alertSuccess' style='display:none;'>
@@ -461,7 +471,7 @@
 
     function generateQRCode() {
       document.getElementById("QRCode").innerHTML =
-        '<img src="https://chart.googleapis.com/chart?cht=qr&chl=upi%3A%2F%2Fpay%3Fpa%3D' + name + '%40' + bankName +
+        '<img src="https://chart.googleapis.com/chart?cht=qr&chl=upi%3A%2F%2Fpay%3Fpa%3D' + upiName + '%40' + bankName +
         '%26pn%3DDrip%26mc%3D0000%26am%3D' + cost + '.00%26mam%3D0%26cu%3DINR&chs=200x200">';
     }
 

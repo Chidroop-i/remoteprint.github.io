@@ -152,7 +152,7 @@
                             </div>
                         </div>
 
-                    <div style="background-color: #2a7df6; color: white; padding: 20px;font-size: large">
+                    <div style="background-color: #2a7df6; color: white; padding: 20px;">
                         <span>Order Status</span>
                         <div>
                             <h4 id="orderStatus">Payment Verification</h4>
@@ -213,15 +213,8 @@
     <script>
         function requestData() {
             var fileName = document.getElementById("uniqueCode").value
-            var gcaptcha=document.getElementById("captcha");
-            if (grecaptcha.getResponse() == ""){
-                alert("Are you a robot?");
-            } else {
-
-
             makeRequest(fileName)
-            console.log(fileName)}
-
+            console.log(fileName)
         }
 
         function makeRequest(fileName) {
@@ -252,7 +245,7 @@
                 document.getElementById("fullName").innerHTML = resultArray[0];
                 document.getElementById("email").innerHTML = resultArray[1];
                 document.getElementById("phoneNumber").innerHTML = resultArray[2];
-                document.getElementById("paymentAmount").innerHTML = '&#8377 ' + resultArray[4];
+                document.getElementById("paymentAmount").innerHTML = '&#8377'+resultArray[4];
                 document.getElementById("orderStatus").innerHTML = resultArray[5];
                 document.getElementById("statusBox").style.display = ''
             } else {

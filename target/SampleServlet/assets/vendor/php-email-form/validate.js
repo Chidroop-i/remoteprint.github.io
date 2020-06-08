@@ -109,7 +109,7 @@ jQuery(document).ready(function($) {
 
     if( ! action ) {
       this_form.find('.loading').slideUp();
-      this_form.find('.error-message').slideDown().html('Oops! Please check form for empty/incorrect fields');
+      this_form.find('.error-message').slideDown().html('Oops! Please check the form for empty/incorrect fields');
       return false;
     }
     

@@ -6,7 +6,10 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150138651-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
     gtag('js', new Date());
 
     gtag('config', 'UA-150138651-1');
@@ -173,9 +176,9 @@
                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
                   </div>
                 </div> -->
-                <div class="col-sm-6" style="object-fit: contain;">
-                  <img src="assets/img/FormArtWork.svg" alt="Workflow Diagram" style="object-fit: contain;width: 100%;">
-                </div>
+          <div class="col-sm-6" style="object-fit: contain;">
+            <img src="assets/img/FormArtWork.svg" alt="Workflow Diagram" style="object-fit: contain;width: 100%;">
+          </div>
           <div class="col-sm-6">
 
             <form form action="submit" method="post" role="form" class="php-email-form" id="form-main">
@@ -261,20 +264,19 @@
               </div>
 
               <div class="form-row">
-                <div class="form-group col-md-3">
-                  <a class="get-started-btn" id="upload-button" style="margin-left: 0px;">Select File</a>
+                <div class="form-group ">
+                  <a class="get-started-btn" id="upload-button" style="margin-left: 5px;margin-right: 10px;">Select
+                    File</a>
                   <input type="file" id="file-input" style="display: none;" accept=".pdf" />
                 </div>
 
-                <div class="form-group col-md-9">
+                <div class="form-group col-md-8">
                   <input type="text" class="form-control" name="fileNameActual" id="fileNameActual" disabled />
                 </div>
 
               </div>
+
               <div class="form-row">
-
-
-
                 <div id="Cost" style="font-size: large;">
                 </div>
 
@@ -283,8 +285,6 @@
 
                   <input type="hidden" class="form-control" name="fileName" id="fileName" value="" />
                   <input type="hidden" class="form-control" name="numberOfPages" id="numberOfPages" value="" />
-
-
                   <input type="hidden" class="form-control" name="cost" id="cost" value="" />
 
                   <div class="Payment">
@@ -317,20 +317,20 @@
                 <button type="submit" id="submit-button" method="post">Submit</button>
               </div>
               <div class="mb-3">
-                <div class="loading" >Loading</div>
-                <div class="error-message" >Unable to load the "PHP Email Form" Library!</div>
-                <div class="sent-message">Awesome! Your submission has been recorded. You will recieve an email shortly.</div>
+                <div class="loading">Loading</div>
+                <div class="error-message">Oops! There seems to be a networking issue.</div>
+                <div class="sent-message">Awesome! Your submission has been recorded. You will recieve an email shortly.
+                </div>
               </div>
             </form>
 
           </div>
-          
+
         </div>
-        <div>
+        <!-- <div>
           <div class="alertSuccess col-sm-6" id='alertSuccess' style='display:none;'>
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            <strong>Great!</strong> Your Document has been submitted succesfully. You will recieve an email
-            shortly.
+            <strong>Awesome! Your submission has been recorded. You will recieve an email shortly.
           </div>
         </div>
 
@@ -339,7 +339,7 @@
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             <strong>Oops!</strong> Please check form for empty/incorrect fields
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
     <!-- End Contact Section -->
@@ -503,8 +503,8 @@
         console.log('Error in Azure Upload Function');
       }
     }
-    var fullForm=document.getElementById("form-main");
-    
+    var fullForm = document.getElementById("form-main");
+
     //AZURE FUNCTIONS END
   </script>
 

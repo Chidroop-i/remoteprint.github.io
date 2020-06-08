@@ -25,7 +25,7 @@
     <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         .footer {
             position: fixed;
@@ -106,6 +106,7 @@
                                         data-msg="Please Enter code in the correct format" />
                                     <div class="validate"></div>
                                 </div>
+                                <div id="captcha"class="g-recaptcha" data-sitekey="6LcaKf8UAAAAAFoCCG_BDw5vKvkkIbp3vDoVm1hz"></div>
                                 <div class="form-group text-center">
                                     <button style="margin-top:28px" type="submit" id="submit-button" method="post"
                                         onclick="requestData()">Submit</button>
@@ -152,7 +153,7 @@
                         </div>
                     </div>
 
-                    <div style="background-color: #2a7df6; color: white; padding: 20px;">
+                    <div style="background-color: #2a7df6; color: white; padding: 20px;font-size: large">
                         <span>Order Status</span>
                         <div>
                             <h4 id="orderStatus">Payment Verification</h4>
@@ -213,8 +214,15 @@
     <script>
         function requestData() {
             var fileName = document.getElementById("uniqueCode").value
+            var gcaptcha=document.getElementById("captcha");
+            if (grecaptcha.getResponse() == ""){
+                alert("Are you a robot?");
+            } else {
+
+
             makeRequest(fileName)
-            console.log(fileName)
+            console.log(fileName)}
+
         }
 
         function makeRequest(fileName) {
@@ -231,7 +239,7 @@
                 redirect: 'follow'
             };
 
-            fetch("https://remoteprint.tools/orderStatus", requestOptions)
+            fetch("orderStatus", requestOptions)
                 .then(response => response.text())
                 .then(result => setData(result))
                 .catch(error => console.log('error', error));

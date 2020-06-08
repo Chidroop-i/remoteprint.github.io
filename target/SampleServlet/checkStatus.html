@@ -25,7 +25,7 @@
     <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         .footer {
             position: fixed;
@@ -62,6 +62,13 @@
         .closebtn:hover {
             color: black;
         }
+
+        .boxed {
+            border: 1px solid #C3C7CC;
+            margin: 40px;
+            border-radius: 6px;
+        }
+
     </style>
 
 </head>
@@ -94,12 +101,14 @@
                             <div class="form-row">
                                 <div class="form-group col-md-8">
                                     <label for="name">Unique Code</label>
-                                    <input type="text" class="form-control" id="uniqueCode" data-rule="lenRange:9,9"
-                                        data-msg="Please enter a valid full name" />
+                                    <input type="text" class="form-control" id="uniqueCode"
+                                        data-rule="regexp:[a-z][a-z][a-z][a-z]-[a-z][a-z][a-z][a-z]$"
+                                        data-msg="Please Enter code in the correct format" />
                                     <div class="validate"></div>
                                 </div>
+                                <div id="captcha"class="g-recaptcha" data-sitekey="6LcaKf8UAAAAAFoCCG_BDw5vKvkkIbp3vDoVm1hz"></div>
                                 <div class="form-group text-center">
-                                    <button type="submit" id="submit-button" method="post"
+                                    <button style="margin-top:28px" type="submit" id="submit-button" method="post"
                                         onclick="requestData()">Submit</button>
                                 </div>
                             </div>
@@ -107,30 +116,70 @@
                     </div>
                 </div>
 
-                <div>
-                    <h3 id="userMessage"></h3>
+                <div id="userAlert" style="display:none;">
+                    <div class="alertFail">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <span id="userMessage"></span>
+                    </div>
+                </div>
+
+                <div id="statusBox" class="boxed text-center" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-6" style="padding: 40px;">
+                            <span>Name</span>
+                            <div>
+                                <h4 id="fullName">Full Name</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="padding: 40px;">
+                            <span>Email</span>
+                            <div>
+                                <h4 id='email'>generic.person@email.com</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" style="padding: 40px;">
+                            <span>Phone Number</span>
+                            <div>
+                                <h4 id="phoneNumber">234567890</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="padding: 40px;">
+                            <span>Payment</span>
+                            <div>
+                                <h4 id='paymentAmount'>&#8377 1,00,000</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background-color: #2a7df6; color: white; padding: 20px;font-size: large">
+                        <span>Order Status</span>
+                        <div>
+                            <h4 id="orderStatus">Payment Verification</h4>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
         </section>
-        <!-- End Contact Section -->
-
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
 
         <!-- <div class="footer-top">
-      <div class="container">
-        <div class="social-links">
-          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        </div>
-      </div>
-    </div> -->
+            <div class="container">
+                <div class="social-links">
+                    <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                    <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                    <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                </div>
+            </div>
+        </div> -->
 
         <div class="container footer-bottom">
             <div class="copyright">
@@ -165,8 +214,15 @@
     <script>
         function requestData() {
             var fileName = document.getElementById("uniqueCode").value
+            var gcaptcha=document.getElementById("captcha");
+            if (grecaptcha.getResponse() == ""){
+                alert("Are you a robot?");
+            } else {
+
+
             makeRequest(fileName)
-            console.log(fileName)
+            console.log(fileName)}
+
         }
 
         function makeRequest(fileName) {
@@ -183,7 +239,7 @@
                 redirect: 'follow'
             };
 
-            fetch("/orderStatus", requestOptions)
+            fetch("orderStatus", requestOptions)
                 .then(response => response.text())
                 .then(result => setData(result))
                 .catch(error => console.log('error', error));
@@ -192,11 +248,17 @@
         function setData(result) {
             console.log(result)
             if (result[0] == '[') {
+                document.getElementById("userAlert").style.display = 'none'
                 var resultArray = result.slice(1, result.length - 1).split(",")
-                document.getElementById('userMessage').innerHTML = resultArray
-
+                document.getElementById("fullName").innerHTML = resultArray[0];
+                document.getElementById("email").innerHTML = resultArray[1];
+                document.getElementById("phoneNumber").innerHTML = resultArray[2];
+                document.getElementById("paymentAmount").innerHTML = resultArray[4];
+                document.getElementById("orderStatus").innerHTML = resultArray[5];
+                document.getElementById("statusBox").style.display = ''
             } else {
-                document.getElementById('userMessage').innerHTML = 'Please type a valid code'
+                document.getElementById("userMessage").innerHTML = 'Please Enter a valid code'
+                document.getElementById("userAlert").style.display = ''
             }
         }
     </script>

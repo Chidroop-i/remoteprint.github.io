@@ -104,9 +104,9 @@
                                     <input type="text" class="form-control" id="uniqueCode"
                                         data-rule="regexp:[a-z][a-z][a-z][a-z]-[a-z][a-z][a-z][a-z]$"
                                         data-msg="Please Enter code in the correct format" />
+                                    <div class="g-recaptcha" data-sitekey="6LcaKf8UAAAAAFoCCG_BDw5vKvkkIbp3vDoVm1hz"></div>
                                     <div class="validate"></div>
                                 </div>
-                                <div id="captcha"class="g-recaptcha" data-sitekey="6LcaKf8UAAAAAFoCCG_BDw5vKvkkIbp3vDoVm1hz"></div>
                                 <div class="form-group text-center">
                                     <button style="margin-top:28px" type="submit" id="submit-button" method="post"
                                         onclick="requestData()">Submit</button>
@@ -122,38 +122,38 @@
                         <span id="userMessage"></span>
                     </div>
                 </div>
+                <div class="text-center">
+                    <div id="statusBox" class="boxed text-center col-md-8" style="display:none;">
+                        <div class="row">
+                            <div class="col-md-6" style="padding: 40px;">
+                                <span>Name</span>
+                                <div>
+                                    <h4 id="fullName">Full Name</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="padding: 40px;">
+                                <span>Email</span>
+                                <div>
+                                    <h4 id='email'>generic.person@email.com</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6" style="padding: 40px;">
+                                <span>Phone Number</span>
+                                <div>
+                                    <h4 id="phoneNumber">234567890</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="padding: 40px;">
+                                <span>Payment</span>
+                                <div>
+                                    <h4 id='paymentAmount'>&#8377 1,00,000</h4>
+                                </div>
+                            </div>
+                        </div>
 
-                <div id="statusBox" class="boxed text-center" style="display: none;">
-                    <div class="row">
-                        <div class="col-md-6" style="padding: 40px;">
-                            <span>Name</span>
-                            <div>
-                                <h4 id="fullName">Full Name</h4>
-                            </div>
-                        </div>
-                        <div class="col-md-6" style="padding: 40px;">
-                            <span>Email</span>
-                            <div>
-                                <h4 id='email'>generic.person@email.com</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6" style="padding: 40px;">
-                            <span>Phone Number</span>
-                            <div>
-                                <h4 id="phoneNumber">234567890</h4>
-                            </div>
-                        </div>
-                        <div class="col-md-6" style="padding: 40px;">
-                            <span>Payment</span>
-                            <div>
-                                <h4 id='paymentAmount'>&#8377 1,00,000</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="background-color: #2a7df6; color: white; padding: 20px;font-size: large">
+                    <div style="background-color: #2a7df6; color: white; padding: 20px;">
                         <span>Order Status</span>
                         <div>
                             <h4 id="orderStatus">Payment Verification</h4>
@@ -181,7 +181,7 @@
             </div>
         </div> -->
 
-        <div class="container footer-bottom">
+        <div class="container footer-top">
             <div class="copyright">
                 &copy; Copyright <strong><span>RemotePrint.tools</span></strong>. All Rights Reserved
             </div>
@@ -214,15 +214,13 @@
     <script>
         function requestData() {
             var fileName = document.getElementById("uniqueCode").value
-            var gcaptcha=document.getElementById("captcha");
             if (grecaptcha.getResponse() == ""){
-                alert("Are you a robot?");
+                alert("Hmm!! Are you a robot?");
             } else {
 
 
             makeRequest(fileName)
             console.log(fileName)}
-
         }
 
         function makeRequest(fileName) {
@@ -253,7 +251,7 @@
                 document.getElementById("fullName").innerHTML = resultArray[0];
                 document.getElementById("email").innerHTML = resultArray[1];
                 document.getElementById("phoneNumber").innerHTML = resultArray[2];
-                document.getElementById("paymentAmount").innerHTML = resultArray[4];
+                document.getElementById("paymentAmount").innerHTML = '&#8377'+resultArray[4];
                 document.getElementById("orderStatus").innerHTML = resultArray[5];
                 document.getElementById("statusBox").style.display = ''
             } else {

@@ -99,7 +99,7 @@ jQuery(document).ready(function($) {
     var this_form = $(this);
     if (ferror) 
     {
-      this_form.find('.error-message').slideDown().html('Check if all feilds are filled');
+      this_form.find('.error-message').slideDown().html('Oops! Please check the form for empty/incorrect fields');
       return false;
     }
     else var str = $(this).serialize();
@@ -109,7 +109,7 @@ jQuery(document).ready(function($) {
 
     if( ! action ) {
       this_form.find('.loading').slideUp();
-      this_form.find('.error-message').slideDown().html('Oops! Please check form for empty/incorrect fields');
+      this_form.find('.error-message').slideDown().html('Oops! Please check the form for empty/incorrect fields');
       return false;
     }
     

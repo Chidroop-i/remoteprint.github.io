@@ -99,7 +99,7 @@ jQuery(document).ready(function($) {
     var this_form = $(this);
     if (ferror) 
     {
-      this_form.find('.error-message').slideDown().html('Check if all feilds are filled');
+      this_form.find('.error-message').slideDown().html('Oops! Please check the form for empty/incorrect fields');
       return false;
     }
     else var str = $(this).serialize();

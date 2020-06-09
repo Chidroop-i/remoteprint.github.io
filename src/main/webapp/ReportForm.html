@@ -235,26 +235,33 @@
                 <div class="validate"></div>
               </div>
 
-              <div class="form-group">
-                <label for="name">Formatting Options</label><br><br>
+              <div id="formatingOptions" class="form-group">
+                <label for="name">Formatting Options</label>
+                <hr>
 
                 <!-- Print Color -->
-                <input type="radio" id="BW" name="color" value="BW">
+
+                <input type="radio" name="color" value="10">
                 <label for="BW">Black & White &nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="radio" id="color" name="color" value="color">
-                <label for="color">Color</label><br><br>
+                <input type="radio" name="color" value="20">
+                <label for="color">Color</label><br>
+                <hr>
 
                 <!-- Single/Double Sided -->
-                <input type="radio" id="singleSided" name="sides" value="single">
+
+                <input type="radio" name="sides" value="1">
                 <label for="singleSided">Single Sided &nbsp;&nbsp;</label>
-                <input type="radio" id="doubleSided" name="sides" value="double">
+                <input type="radio" name="sides" value="2">
                 <label for="doubleSided">Double Sided</label><br>
+                <input type="radio" name="sides" value="3">
+                <label for="doubleSided">Initial Pages (Single Sided) + Other Pages (Double Sided)</label><br>
+                <hr>
+
               </div>
 
               <div class="form-group">
                 <label for="collegeName">Spiral Bind Color</label>
                 <select class="form-control" name="bindingColor" id="spiralBindColor">
-                  <option>None</option>
                   <option>Light Yellow</option>
                   <option>Light Blue</option>
                   <option>Light Pink</option>
@@ -277,7 +284,7 @@
               </div>
 
               <div class="form-row">
-                <div id="Cost" style="font-size: large;">
+                <div id="Cost" style="font-size: large;display: none;">
                 </div>
 
 
@@ -314,8 +321,9 @@
               </div>
 
               <div class="form-group">
-                <input  type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                <label for="vehicle1" >I have read and I agree with the <a href="tandc.html">terms and conditions</a>.</label><br>
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                <label for="vehicle1">I have read and I agree with the <a href="tandc.html">terms and
+                    conditions</a>.</label><br>
               </div>
 
               <div class="form-group text-center">
@@ -396,7 +404,9 @@
     const fileSelector = document.getElementById('file-input');
     const submitButton = document.getElementById('submit-button');
     const costLabel = document.getElementById("Cost")
-    var fileName
+    const formatingOptions = document.getElementById("formatingOptions")
+    var fileName;
+    var count = 1;
     var cost;
     var upiName;
     var bankName;
@@ -406,6 +416,22 @@
     //Event Listeners
     selectButton.addEventListener("click", () => fileInput.click());
     payButton.addEventListener("click", initiatePayment);
+
+    var color = document.getElementsByName('color');
+    for (var i = 0; i < color.length; i++) {
+      color[i].onclick = function() {
+        calculateCost()
+      }
+    }
+
+    var sides = document.getElementsByName('sides');
+    for (var i = 0; i < sides.length; i++) {
+      sides[i].onclick = function() {
+        calculateCost()
+      }
+    }
+
+
 
     function generateSegment(length) {
       var result = '';
@@ -436,7 +462,6 @@
       var fileNameInput = document.getElementById("fileName");
       fileNameInput.value = fileName;
     }
-
     fileSelector.addEventListener('change', (event) => {
       const fileList = event.target.files;
       var reader = new FileReader();
@@ -444,20 +469,26 @@
       submitButton.disabled = true;
       resetPaymentInfo();
       reader.onloadend = function () {
-        var count = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
+        count = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
         console.log('Number of Pages:', count);
         document.getElementById("fileNameActual").value = fileInput.files[0].name
         document.getElementById("numberOfPages").value = count
-        calculateCost(count)
+        calculateCost()
+        document.getElementById("Cost").style.display = ''
         try {
           if (fileInput.files[0].name) {
             payButton.disabled = false;
+
           }
         } catch {
           console("File Not Selected Exception")
         }
       }
     });
+
+
+
+
 
     function resetPaymentInfo() {
       costLabel.innerHTML = '';
@@ -466,13 +497,49 @@
 
     }
 
-    function calculateCost(count) {
-      cost = count * 10
-      upiName = 'shekar'
-      bankName = 'citi'
+    function calculateCost() {
+      var spiralBindCost = 30
+      var costMap = new Map()
+      var bw1sps = 1.5
+      var bw2sps = 1
+      var c1sps = 5.5
+      var c2sps = 4
+
+      costMap.set("101", bw1sps)
+      costMap.set("102", bw2sps)
+      costMap.set("201", c1sps)
+      costMap.set("202", c2sps)
+
+      var color = document.getElementsByName('color');
+      var colorValue;
+      for (var i = 0; i < color.length; i++) {
+        if (color[i].checked) {
+          colorValue = color[i].value;
+        }
+      }
+
+      var sides = document.getElementsByName('sides');
+      var sidesValue;
+      for (var i = 0; i < sides.length; i++) {
+        if (sides[i].checked) {
+          sidesValue = sides[i].value;
+        }
+      }
+
+      var typeValue = colorValue + sidesValue
+
+      if (typeValue != "103" && typeValue != "203") {
+        cost = count * costMap.get(colorValue + sidesValue) + spiralBindCost
+      } else {
+        cost = 12*costMap.get(colorValue + "1") + (count-12)*costMap.get(colorValue + "2") + spiralBindCost
+      }
+
+      
+
       costLabel.innerHTML = '<strong>  Estimated Cost : &#8377 ' + cost + '.00</strong>';
       document.getElementById("cost").value = cost
     }
+
 
     function generateQRCode() {
       document.getElementById("QRCode").innerHTML =

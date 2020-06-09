@@ -483,7 +483,7 @@
     //AZURE FUNCTIONS START
     const accountName = "reportprintstorage";
     const sasString =
-      "se=2020-08-30T04%3A05%3A23Z&sp=rwdlac&sv=2018-03-28&ss=b&srt=sco&sig=Oz3iNG4cnEWv5uMMMnO4PygVnkMW%2BqnsEWbyZUACigM%3D";
+      "?sv=2019-10-10&ss=b&srt=sco&sp=wx&se=2020-08-30T03:26:10Z&st=2020-06-08T19:26:10Z&sip=0.0.0.0-255.255.255.255&spr=https&sig=ag314dUSt9%2B64VfqJpZ%2BI9RNq1gZYvA6%2FbAlSvIq3Eg%3D";
     const containerName = "testcontainer";
     const containerURL = new azblob.ContainerURL(
       `https://${accountName}.blob.core.windows.net/${containerName}?${sasString}`,

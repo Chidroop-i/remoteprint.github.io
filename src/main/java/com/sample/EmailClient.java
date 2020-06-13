@@ -10,7 +10,7 @@ public class EmailClient {
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("from", "Support RemotePrint.tools<support@remoteprint.tools>")
+                .addFormDataPart("from", "Support RemotePrint.tools<remoteprint.tools@gmail.com>")
                 .addFormDataPart("to", EmailID)
                 .addFormDataPart("subject", "Successful Submission")
                 .addFormDataPart("text", "Successful Submission")

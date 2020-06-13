@@ -79,66 +79,24 @@
     <div class="container d-flex align-items-center">
 
       <h1 class="logo mr-auto"><a href="index.html">RemotePrint.tools</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-      <!-- <nav class="nav-menu d-none d-lg-block">
-            <ul>
-                <li class="active"><a href="#header">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#team">Team</a></li>
-                <li class="drop-down"><a href="">Drop Down</a>
-                    <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li class="drop-down"><a href="#">Deep Drop Down</a>
-                            <ul>
-                                <li><a href="#">Deep Drop Down 1</a></li>
-                                <li><a href="#">Deep Drop Down 2</a></li>
-                                <li><a href="#">Deep Drop Down 3</a></li>
-                                <li><a href="#">Deep Drop Down 4</a></li>
-                                <li><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Drop Down 2</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
-                    </ul>
-                </li>
-                <li><a href="#contact">Contact</a></li>
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li ><a href="index.html">Home</a></li>
+          <li class="active"><a href="ReportForm.html"> Get Started </a></li>
+          <li><a href="checkStatus.html"> Check Status </a></li>
+          <li><a href="tandc.html"> T & C </a></li>
+        </ul>
+      </nav>
 
-            </ul>
-        </nav>.nav-menu -->
 
-      <a href="#about" class="get-started-btn scrollto">Get Started</a>
+
 
     </div>
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <!-- <section id="hero" class="d-flex align-items-center">
 
-  <div class="container">
-
-    <div class="row">
-      <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-        <h1>Elegant and creative solutions</h1>
-        <h2>We are team of talanted designers making websites with Bootstrap</h2>
-        <div class="d-flex">
-          <a href="#about" class="btn-get-started scrollto"id="select-button">Get Started</a>
-          <input type="file" id="file-input"  style="display: none;" accept=".pdf"/>
-
-          <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a>
-        </div>
-      </div>
-      <div class="col-lg-6 order-1 order-lg-2 hero-img"id="QRCode">
-        <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
-      </div>
-    </div>
-  </div>
-
-</section> -->
   <!-- End Hero -->
 
   <main id="main">
@@ -153,29 +111,7 @@
 
         <div class="row">
 
-          <!-- <div class="col-lg-5 d-flex align-items-stretch">
-                  <div class="info">
-                    <div class="address">
-                      <i class="icofont-google-map"></i>
-                      <h4>Location:</h4>
-                      <p>A108 Adam Street, New York, NY 535022</p>
-                    </div>
 
-                    <div class="email">
-                      <i class="icofont-envelope"></i>
-                      <h4>Email:</h4>
-                      <p>info@example.com</p>
-                    </div>
-
-                    <div class="phone">
-                      <i class="icofont-phone"></i>
-                      <h4>Call:</h4>
-                      <p>+1 5589 55488 55s</p>
-                    </div>
-
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
-                  </div>
-                </div> -->
           <div class="col-sm-6" style="object-fit: contain;">
             <img src="assets/img/FormArtWork.svg" alt="Workflow Diagram" style="object-fit: contain;width: 100%;">
           </div>
@@ -235,30 +171,40 @@
                 <div class="validate"></div>
               </div>
 
-              <div class="form-group">
-                <label for="name">Formatting Options</label><br><br>
+              <div id="formatingOptions" class="form-group" disabled>
+                <label for="name">Formatting Options</label>
+                <hr>
 
                 <!-- Print Color -->
-                <input type="radio" id="BW" name="color" value="BW">
+
+                <input type="radio" name="color" value="10" >
                 <label for="BW">Black & White &nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="radio" id="color" name="color" value="color">
-                <label for="color">Color</label><br><br>
+                <input type="radio" name="color" value="20">
+                <label for="color">Color</label><br>
+                <hr>
 
                 <!-- Single/Double Sided -->
-                <input type="radio" id="singleSided" name="sides" value="single">
+
+                <input type="radio" name="sides" value="1">
                 <label for="singleSided">Single Sided &nbsp;&nbsp;</label>
-                <input type="radio" id="doubleSided" name="sides" value="double">
+                <input type="radio" name="sides" value="2">
                 <label for="doubleSided">Double Sided</label><br>
+                <input type="radio" name="sides" value="3">
+                <label for="doubleSided">Initial Pages (Single Sided) + Other Pages (Double Sided)</label><br>
+                <hr>
+
+
+
               </div>
 
               <div class="form-group">
                 <label for="collegeName">Spiral Bind Color</label>
                 <select class="form-control" name="bindingColor" id="spiralBindColor">
-                  <option>None</option>
+                  <option>Light Pink</option>
                   <option>Light Yellow</option>
                   <option>Light Blue</option>
-                  <option>Light Pink</option>
                   <option>Light Green</option>
+                  <option>None</option>
                 </select>
                 <div class="validate"></div>
               </div>
@@ -277,7 +223,7 @@
               </div>
 
               <div class="form-row">
-                <div id="Cost" style="font-size: large;">
+                <div id="Cost" style="font-size: large;display: none;">
                 </div>
 
 
@@ -288,17 +234,27 @@
                   <input type="hidden" class="form-control" name="cost" id="cost" value="" />
 
                   <div class="Payment">
-                    <button class="get-started-btn text-center" id="pay-button" style="margin-left: 0px;">Pay</button>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <img src="assets/img/UPILogo.png" alt="Workflow Diagram" style="object-fit: contain;width: 100%;">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <button class="get-started-btn text-center" id="pay-button" style="margin-left: 0px;">Pay</button>
+                        </div>
+                    </div>
                     <div class="Cost">
                       <br><strong>
                         <div id="uniqueFileNameLabel" style="font-size: large;"></div>
                       </strong>
+                      <br><strong>
+                      <div id="vpa" style="font-size: large;" di></div>
+                    </strong>
                     </div>
                   </div>
 
 
-                  <div class="QRcode">
-                    <div id="QRCode" class="text-center"></div>
+                  <div class="QRcode" >
+                    <div id="QRCode" class="text-center"style="display: none"></div>
                   </div>
 
                 </div>
@@ -307,15 +263,16 @@
 
 
               <div class="form-group">
-                <label for="transactionId">UPI Transaction ID</label>
-                <input type="text" class="form-control" name="transactionId" data-rule="minlen:3"
-                  data-msg="Please fill this field" />
+                <label for="transactionId">12 Digit UPI Transaction ID (UTR)</label>
+                <input type="text" class="form-control" name="transactionId" data-rule="lenRange:12,12"
+                  data-msg="Please fill the 12 digit Transaction ID" />
                 <div class="validate"></div>
               </div>
 
               <div class="form-group">
-                <input  type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                <label for="vehicle1" >I have read and I agree with the <a href="tandc.html">terms and conditions</a>.</label><br>
+                <input type="checkbox"  value="Bike" id="tandc">
+                <label for="tandc">I have read and I agree with the <a href="tandc.html">terms and
+                    conditions</a>.</label><br>
               </div>
 
               <div class="form-group text-center">
@@ -332,19 +289,7 @@
           </div>
 
         </div>
-        <!-- <div>
-          <div class="alertSuccess col-sm-6" id='alertSuccess' style='display:none;'>
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            <strong>Awesome! Your submission has been recorded. You will recieve an email shortly.
-          </div>
-        </div>
 
-        <div>
-          <div class="alertFail col-sm-6" id='alertFail' style='display:none;'>
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            <strong>Oops!</strong> Please check form for empty/incorrect fields
-          </div>
-        </div> -->
       </div>
     </section>
     <!-- End Contact Section -->
@@ -354,21 +299,11 @@
   <!-- ======= Footer ======= -->
   <footer id="footer">
 
-    <!-- <div class="footer-top">
-      <div class="container">
-        <div class="social-links">
-          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        </div>
-      </div>
-    </div> -->
+
 
     <div class="container footer-top">
       <div class="copyright">
-        &copy; Copyright <strong><span>RemotePrint.tools</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>RemotePrint.tools</span></strong>. All Rights Reserved <strong>Contact us at remoteprint.tools@gmail.com<strong>
       </div>
     </div>
   </footer><!-- End Footer -->
@@ -396,16 +331,35 @@
     const fileSelector = document.getElementById('file-input');
     const submitButton = document.getElementById('submit-button');
     const costLabel = document.getElementById("Cost")
-    var fileName
+    const formatingOptions = document.getElementById("formatingOptions")
+    var x = document.getElementById("tandc").required=true;
+    var fileName;
+    var count = 1;
     var cost;
-    var upiName;
-    var bankName;
+    var upiName='aditya.sreerama';
+    var bankName='ybl';
     submitButton.disabled = true;
     payButton.disabled = true;
 
     //Event Listeners
     selectButton.addEventListener("click", () => fileInput.click());
     payButton.addEventListener("click", initiatePayment);
+
+    var color = document.getElementsByName('color');
+    for (var i = 0; i < color.length; i++) {
+      color[i].onclick = function() {
+        calculateCost()
+      }
+    }
+
+    var sides = document.getElementsByName('sides');
+    for (var i = 0; i < sides.length; i++) {
+      sides[i].onclick = function() {
+        calculateCost()
+      }
+    }
+
+
 
     function generateSegment(length) {
       var result = '';
@@ -426,8 +380,18 @@
       setFileName()
       uploadFiles()
       generateQRCode()
+      document.getElementById("QRCode").style.display=''
       submitButton.disabled = false;
       payButton.disabled = true;
+      document.getElementById("vpa").innerHTML='VPA : aditya.sreerama@ybl'
+      disableRadioButtons()
+    }
+    function disableRadioButtons() {
+      var color = document.getElementsByName('color');
+      for (var i = 0; i < color.length; i++) {
+        color[i].readOnly=true;
+      }
+
     }
 
     function setFileName() {
@@ -436,7 +400,6 @@
       var fileNameInput = document.getElementById("fileName");
       fileNameInput.value = fileName;
     }
-
     fileSelector.addEventListener('change', (event) => {
       const fileList = event.target.files;
       var reader = new FileReader();
@@ -444,14 +407,16 @@
       submitButton.disabled = true;
       resetPaymentInfo();
       reader.onloadend = function () {
-        var count = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
+        count = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
         console.log('Number of Pages:', count);
         document.getElementById("fileNameActual").value = fileInput.files[0].name
         document.getElementById("numberOfPages").value = count
-        calculateCost(count)
+        calculateCost()
+        document.getElementById("Cost").style.display = ''
         try {
           if (fileInput.files[0].name) {
             payButton.disabled = false;
+
           }
         } catch {
           console("File Not Selected Exception")
@@ -459,25 +424,73 @@
       }
     });
 
+
+
+
+
     function resetPaymentInfo() {
       costLabel.innerHTML = '';
-      document.getElementById("QRCode").innerHTML = ''
+      document.getElementById("QRCode").style.display='none';
       document.getElementById("uniqueFileNameLabel").innerHTML = ''
+      document.getElementById("vpa").innerHTML=''
+
 
     }
+    document.getElementById("spiralBindColor").onchange=function () {
+      calculateCost()
+    }
 
-    function calculateCost(count) {
-      cost = count * 10
-      upiName = 'shekar'
-      bankName = 'citi'
-      costLabel.innerHTML = '<strong>  Estimated Cost : &#8377 ' + cost + '.00</strong>';
+    function calculateCost() {
+      var spiralBindCost = 30
+      var costMap = new Map()
+      var bw1sps = 1.5
+      var bw2sps = 1
+      var c1sps = 5.5
+      var c2sps = 4
+      var surcharge=5
+      spiralBindCost=(document.getElementById("spiralBindColor").value=="None")?0:30;
+
+      costMap.set("101", bw1sps)
+      costMap.set("102", bw2sps)
+      costMap.set("201", c1sps)
+      costMap.set("202", c2sps)
+
+      var color = document.getElementsByName('color');
+      var colorValue;
+      for (var i = 0; i < color.length; i++) {
+        if (color[i].checked) {
+          colorValue = color[i].value;
+        }
+      }
+
+      var sides = document.getElementsByName('sides');
+      var sidesValue;
+      for (var i = 0; i < sides.length; i++) {
+        if (sides[i].checked) {
+          sidesValue = sides[i].value;
+        }
+      }
+
+      var typeValue = colorValue + sidesValue
+
+      if (typeValue != "103" && typeValue != "203") {
+        cost = count * costMap.get(colorValue + sidesValue) + spiralBindCost
+      } else {
+        cost = 12*costMap.get(colorValue + "1") + (count-12)*costMap.get(colorValue + "2") + spiralBindCost+surcharge
+      }
+
+      
+      cost=cost.toFixed(2);
+      costLabel.innerHTML = '<strong>  Estimated Cost : &#8377 ' + cost + '</strong>';
       document.getElementById("cost").value = cost
+      generateQRCode()
     }
+
 
     function generateQRCode() {
       document.getElementById("QRCode").innerHTML =
         '<img src="https://chart.googleapis.com/chart?cht=qr&chl=upi%3A%2F%2Fpay%3Fpa%3D' + upiName + '%40' + bankName +
-        '%26pn%3DDrip%26mc%3D0000%26am%3D' + cost + '.00%26mam%3D0%26cu%3DINR&chs=200x200">';
+        '%26pn%3DDrip%26mc%3D0000%26am%3D' + cost + '%26mam%3D0%26cu%3DINR&chs=200x200">';
     }
 
     //AZURE FUNCTIONS START

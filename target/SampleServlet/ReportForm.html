@@ -449,6 +449,7 @@
       var c2sps = 4
       var surcharge=5
       spiralBindCost=(document.getElementById("spiralBindColor").value=="None")?0:30;
+      var baseCharge=30;
 
       costMap.set("101", bw1sps)
       costMap.set("102", bw2sps)
@@ -479,7 +480,8 @@
         cost = 12*costMap.get(colorValue + "1") + (count-12)*costMap.get(colorValue + "2") + spiralBindCost+surcharge
       }
 
-      
+      if (cost<=30)
+      {  cost=baseCharge;}
       cost=cost.toFixed(2);
       costLabel.innerHTML = '<strong>  Estimated Cost : &#8377 ' + cost + '</strong>';
       document.getElementById("cost").value = cost

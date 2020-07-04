@@ -18,7 +18,7 @@ public class Query {
 
     int flag = 0,flag1 = 0;
 
-    int update(String orderNumber , String name , String college , String usn , String guideName , String department , String phoneNumber , String email , String color,String sides , String bindingColor , String fileName,int numberOfPages,int cost ,String transactionId, String status ) throws SQLException, ClassNotFoundException {
+    int update(String orderNumber , String name , String college , String usn , String guideName , String department , String phoneNumber , String email , String color,String sides , String bindingColor , String fileName,int numberOfPages,float cost ,String transactionId, String status, String dateTime) throws SQLException, ClassNotFoundException {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url);
@@ -31,7 +31,7 @@ public class Query {
             System.out.println("=========================================");
 
 
-            PreparedStatement selectSql = connection.prepareStatement("insert into customerTable (orderNumber, name , college , usn , guideName , department , phoneNumber , email , color , sides , bindingColor,fileName, numberOfPages , cost , transactionId, status) values ( ?, ? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?, ?)");
+            PreparedStatement selectSql = connection.prepareStatement("insert into customerTable (orderNumber, name , college , usn , guideName , department , phoneNumber , email , color , sides , bindingColor,fileName, numberOfPages , cost , transactionId, status,dateTime) values ( ?, ? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?, ?,?)");
 
             selectSql.setString(1, orderNumber);
             selectSql.setString(2, name);
@@ -46,9 +46,10 @@ public class Query {
             selectSql.setString(11, bindingColor);
             selectSql.setString(12, fileName);
             selectSql.setInt(13, numberOfPages);
-            selectSql.setInt(14, cost);
+            selectSql.setFloat(14, cost);
             selectSql.setString(15, transactionId);
             selectSql.setString(16, status);
+            selectSql.setString(17, dateTime);
 
             boolean res = selectSql.execute();
 

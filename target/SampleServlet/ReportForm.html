@@ -469,6 +469,7 @@
         loadingTask.promise.then(pdf => {
           count=pdf._pdfInfo.numPages
           isCountUpdated=true;
+          document.getElementById("numberOfPages").value = count
           console.log("Number of Pages from moz: "+count);
           calculateCost();
         })

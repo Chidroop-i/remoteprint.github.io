@@ -38,7 +38,7 @@
   <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.js"> </script>
   <style>
     .alertSuccess {
       padding: 20px;
@@ -175,38 +175,54 @@
                 <label for="name">Formatting Options</label>
                 <hr>
 
-                <!-- Print Color -->
+                <div class="form-group">
+                  <!-- Print Type  -->
+                  <input type="radio" name="printType" value="draftCopy">
+                  <label for="singleSided">Draft Copy &nbsp;&nbsp;</label>
+                  <input type="radio" id="finalCopyOption"name="printType" value="finalCopy">
+                  <label for="doubleSided">Final Copy (CSE and ISE)</label><br>
+                  <hr>
+                </div>
 
-                <input type="radio" name="color" value="10" >
-                <label for="BW">Black & White &nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="radio" name="color" value="20">
-                <label for="color">Color</label><br>
-                <hr>
+                <div class="form-group" id="final">
+                  <label for="noCopies">Number of Copies</label>
+                  <select class="form-control" name="numberOfCopies" id="noCopies">
+                    <option selected>1</option>
+                    <option >2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                  <hr>
+                </div>
 
-                <!-- Single/Double Sided -->
+                <div class="form-group" id="draft">
+                  <!-- Print Color -->
+                  <input type="radio" name="color" value="10">
+                  <label for="BW">Black & White &nbsp;&nbsp;&nbsp;&nbsp;</label>
+                  <input type="radio" name="color" value="20">
+                  <label for="color">Color</label><br>
+                  <hr>
 
-                <input type="radio" name="sides" value="1">
-                <label for="singleSided">Single Sided &nbsp;&nbsp;</label>
-                <input type="radio" name="sides" value="2">
-                <label for="doubleSided">Double Sided</label><br>
-                <input type="radio" name="sides" value="3">
-                <label for="doubleSided">Initial Pages (Single Sided) + Other Pages (Double Sided)</label><br>
-                <hr>
+                  <!-- Single/Double Sided -->
+                  <input type="radio" name="sides" value="1">
+                  <label for="singleSided">Single Sided &nbsp;&nbsp;</label>
+                  <input type="radio" name="sides" value="2">
+                  <label for="doubleSided">Double Sided</label><br>
+                  <input type="radio" name="sides" value="3">
+                  <label for="doubleSided">Initial Pages (Single Sided) + Other Pages (Double Sided)</label><br>
+                  <hr>
 
-
-
-              </div>
-
-              <div class="form-group">
-                <label for="collegeName">Spiral Bind Color</label>
-                <select class="form-control" name="bindingColor" id="spiralBindColor">
-                  <option>Light Pink</option>
-                  <option>Light Yellow</option>
-                  <option>Light Blue</option>
-                  <option>Light Green</option>
-                  <option>None</option>
-                </select>
-                <div class="validate"></div>
+                  <!-- Spiral Bind Color -->
+                  <label for="collegeName">Spiral Bind Color</label>
+                  <select class="form-control" name="bindingColor" id="spiralBindColor">
+                    <option>Light Yellow</option>
+                    <option>Light Blue</option>
+                    <option>Light Pink</option>
+                    <option>Light Green</option>
+                    <option>None</option>
+                  </select>
+                </div>
               </div>
 
               <div class="form-row">
@@ -281,7 +297,8 @@
               <div class="mb-3">
                 <div class="loading">Loading</div>
                 <div class="error-message">Oops! There seems to be a networking issue.</div>
-                <div class="sent-message">Awesome! Your submission has been recorded. You will recieve an email shortly.
+                <div class="sent-message">Awesome! Your submission has been recorded. You will recieve an email
+                  shortly.
                 </div>
               </div>
             </form>
@@ -312,6 +329,7 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/js/azure-storage-blob.js" charset="utf-8"></script>
+  <script src="https://cdnjs.com/libraries/pdf.js" charset="utf-8"></script>
   <script src="assets/vendor/jquery/jquery.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
@@ -332,14 +350,21 @@
     const submitButton = document.getElementById('submit-button');
     const costLabel = document.getElementById("Cost")
     const formatingOptions = document.getElementById("formatingOptions")
+    const draft = document.getElementById("draft");
+    const final = document.getElementById("final");
+    const finalCopyOption=document.getElementById("finalCopyOption");
     var x = document.getElementById("tandc").required=true;
+    var numberOfCopies=document.getElementById("noCopies");
     var fileName;
     var count = 1;
     var cost;
     var upiName='aditya.sreerama';
     var bankName='ybl';
+    draft.style.display = 'none';
+    final.style.display = 'none';
     submitButton.disabled = true;
     payButton.disabled = true;
+    var isCountUpdated=false;
 
     //Event Listeners
     selectButton.addEventListener("click", () => fileInput.click());
@@ -351,12 +376,40 @@
         calculateCost()
       }
     }
+    var printType = document.getElementsByName('printType');
+    
 
     var sides = document.getElementsByName('sides');
     for (var i = 0; i < sides.length; i++) {
       sides[i].onclick = function() {
         calculateCost()
+        
       }
+    }
+
+    
+    for (var i = 0; i < printType.length; i++) {
+      printType[i].onclick = function () {
+        openSesame()
+      }
+    }
+
+    function openSesame() {
+      var printTypeValue;
+      for (var i = 0; i < printType.length; i++) {
+        if (printType[i].checked) {
+          printTypeValue = printType[i].value;
+        }
+      }
+      
+      if (printTypeValue == "draftCopy") {
+        draft.style.display = ''
+        final.style.display = 'none'
+      } else {
+        draft.style.display = 'none'
+        final.style.display = ''
+      }
+      calculateCost()
     }
 
 
@@ -400,15 +453,33 @@
       var fileNameInput = document.getElementById("fileName");
       fileNameInput.value = fileName;
     }
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.js';
     fileSelector.addEventListener('change', (event) => {
+      isCountUpdated=false;
       const fileList = event.target.files;
       var reader = new FileReader();
+      var file = event.target.files[0];
       reader.readAsBinaryString(fileList[0]);
+      var fileReader = new FileReader();
+      fileReader.readAsArrayBuffer(file);
+      
+      fileReader.onload = function() {
+        var typedarray = new Uint8Array(this.result);
+        const loadingTask = pdfjsLib.getDocument(typedarray);
+        loadingTask.promise.then(pdf => {
+          count=pdf._pdfInfo.numPages
+          isCountUpdated=true;
+          console.log("Number of Pages from moz: "+count);
+          calculateCost();
+        })
+      }
+
       submitButton.disabled = true;
       resetPaymentInfo();
       reader.onloadend = function () {
-        count = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
-        console.log('Number of Pages:', count);
+        countOld = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
+        
+        console.log('Number of Pages:', countOld);
         document.getElementById("fileNameActual").value = fileInput.files[0].name
         document.getElementById("numberOfPages").value = count
         calculateCost()
@@ -439,8 +510,13 @@
     document.getElementById("spiralBindColor").onchange=function () {
       calculateCost()
     }
+    numberOfCopies.onchange=function()
+    {
+      calculateCost()
+    }
 
     function calculateCost() {
+     
       var spiralBindCost = 30
       var costMap = new Map()
       var bw1sps = 1.5
@@ -450,6 +526,11 @@
       var surcharge=5
       spiralBindCost=(document.getElementById("spiralBindColor").value=="None")?0:30;
       var baseCharge=30;
+      var c1spsf=5
+      var t1spsf=5
+      var hardBind=65
+      var frontPage=10
+      
 
       costMap.set("101", bw1sps)
       costMap.set("102", bw2sps)
@@ -482,6 +563,10 @@
 
       if (cost<=30)
       {  cost=baseCharge;}
+      if(finalCopyOption.checked&&isCountUpdated)
+      {
+        cost=(((count)*c1spsf)+15*t1spsf+hardBind+frontPage)*numberOfCopies.value;
+      }
       cost=cost.toFixed(2);
       costLabel.innerHTML = '<strong>  Estimated Cost : &#8377 ' + cost + '</strong>';
       document.getElementById("cost").value = cost
@@ -529,12 +614,7 @@
   </script>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css" />
-  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css">
-  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-
 
 </body>
 

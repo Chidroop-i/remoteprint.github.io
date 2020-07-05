@@ -20,6 +20,8 @@ public class assetDeclare extends HttpServlet{
     String orderNumber, name , college , usn , guideName , department , phoneNumber , email , color , sides , bindingColor,fileName, transactionId , status;
     int  numberOfPages;
     float cost;
+    String printType;
+    int numberOfCopies;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -48,10 +50,23 @@ public class assetDeclare extends HttpServlet{
            department = req.getParameter("department");
            phoneNumber = req.getParameter("phoneNumber");
            email = req.getParameter("email");
-           color = req.getParameter("color");
-           sides = req.getParameter("sides");
-           bindingColor = req.getParameter("bindingColor");
-          // fileName = req.getParameter("fileName");
+           printType=req.getParameter("printType");
+
+           if(req.getParameter("printType").equals("draftCopy")) {
+
+            color = req.getParameter("color");
+            sides = req.getParameter("sides");
+            bindingColor = req.getParameter("bindingColor");
+            numberOfCopies = 0;
+        }
+        else {
+
+            color = "NA";
+            sides = "NA";
+            bindingColor = "NA";
+            numberOfCopies =  Integer.parseInt(req.getParameter("numberOfCopies"));
+        }
+
            numberOfPages = Integer.parseInt(req.getParameter("numberOfPages"));
            cost = Float.parseFloat(req.getParameter("cost"));
            transactionId = req.getParameter("transactionId");
@@ -60,7 +75,7 @@ public class assetDeclare extends HttpServlet{
 
             try {
 
-                int result = query.update(orderNumber,name,college,usn,guideName,department,phoneNumber,email,color,sides,bindingColor,fileName,numberOfPages,cost,transactionId,status,current_date_time.toString());
+                int result = query.update(orderNumber,name,college,usn,guideName,department,phoneNumber,email,color,sides,bindingColor,fileName,numberOfPages,cost,transactionId,status,current_date_time.toString(),printType,numberOfCopies);
                 EmailClient.sendEmail(name,fileName,email);
                 PrintWriter writer=resp.getWriter();
                 writer.append("OK");

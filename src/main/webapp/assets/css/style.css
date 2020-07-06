@@ -13,6 +13,10 @@ body {
   color: #444444;
 }
 
+.info {
+  fill: #3672C1;
+}
+
 a {
   color: #1699DF;
 }

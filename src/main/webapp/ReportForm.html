@@ -82,7 +82,7 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li ><a href="index.html">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li class="active"><a href="ReportForm.html"> Get Started </a></li>
           <li><a href="checkStatus.html"> Check Status </a></li>
           <li><a href="tandc.html"> T & C </a></li>
@@ -179,128 +179,163 @@
                   <!-- Print Type  -->
                   <input type="radio" name="printType" value="draftCopy">
                   <label for="singleSided">Draft Copy &nbsp;&nbsp;</label>
-                  <input type="radio" id="finalCopyOption"name="printType" value="finalCopy">
-                  <label for="doubleSided">Final Copy (CSE and ISE)</label><br>
-                  <hr>
-                </div>
+                  <input type="radio" id="finalCopyOption" name="printType" value="finalCopy">
+                  <label for="doubleSided">Final Copy (CSE)</label><button type="button" class="btn btn-link"
+                      data-toggle="modal" data-target="#exampleModalCenter"><sup>
+                      <img src="assets/img/info.svg"</sup>
+                    </button>
 
-                <div class="form-group" id="final">
-                  <label for="noCopies">Number of Copies</label>
-                  <select class="form-control" name="numberOfCopies" id="noCopies">
-                    <option selected>1</option>
-                    <option >2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                  <hr>
-                </div>
-
-                <div class="form-group" id="draft">
-                  <!-- Print Color -->
-                  <input type="radio" name="color" value="10">
-                  <label for="BW">Black & White &nbsp;&nbsp;&nbsp;&nbsp;</label>
-                  <input type="radio" name="color" value="20">
-                  <label for="color">Color</label><br>
-                  <hr>
-
-                  <!-- Single/Double Sided -->
-                  <input type="radio" name="sides" value="1">
-                  <label for="singleSided">Single Sided &nbsp;&nbsp;</label>
-                  <input type="radio" name="sides" value="2">
-                  <label for="doubleSided">Double Sided</label><br>
-                  <input type="radio" name="sides" value="3">
-                  <label for="doubleSided">Initial Pages (Single Sided) + Other Pages (Double Sided)</label><br>
-                  <hr>
-
-                  <!-- Spiral Bind Color -->
-                  <label for="collegeName">Spiral Bind Color</label>
-                  <select class="form-control" name="bindingColor" id="spiralBindColor">
-                    <option>Light Yellow</option>
-                    <option>Light Blue</option>
-                    <option>Light Pink</option>
-                    <option>Light Green</option>
-                    <option>None</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group ">
-                  <a class="get-started-btn" id="upload-button" style="margin-left: 5px;margin-right: 10px;">Select
-                    File</a>
-                  <input type="file" id="file-input" style="display: none;" accept=".pdf" />
-                </div>
-
-                <div class="form-group col-md-8">
-                  <input type="text" class="form-control" name="fileNameActual" id="fileNameActual" disabled />
-                </div>
-
-              </div>
-
-              <div class="form-row">
-                <div id="Cost" style="font-size: large;display: none;">
-                </div>
-
-
-                <div class="grid-container">
-
-                  <input type="hidden" class="form-control" name="fileName" id="fileName" value="" />
-                  <input type="hidden" class="form-control" name="numberOfPages" id="numberOfPages" value="" />
-                  <input type="hidden" class="form-control" name="cost" id="cost" value="" />
-
-                  <div class="Payment">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <img src="assets/img/UPILogo.png" alt="Workflow Diagram" style="object-fit: contain;width: 100%;">
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Final Copy</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                         </div>
-                        <div class="form-group col-md-6">
-                          <button class="get-started-btn text-center" id="pay-button" style="margin-left: 0px;">Pay</button>
+                        <div class="modal-body">
+                          Final Copy is currently available only for CSE as the format has been confirmed by the Department. The <strong>Final Copy</strong> option has the following formatting by default: <br><br>
+                          <ul>
+                            <li>Single Sided</li>
+                            <li>Color Print for all pages</li>
+                            <li>OHP Sheets for Certificates and Chapters</li>
+                            <li>Hard Binding with Pink Cover</li>
+                          </ul>
                         </div>
-                    </div>
-                    <div class="Cost">
-                      <br><strong>
-                        <div id="uniqueFileNameLabel" style="font-size: large;"></div>
-                      </strong>
-                      <br><strong>
-                      <div id="vpa" style="font-size: large;" di></div>
-                    </strong>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
+                  <div class="form-group" id="final">
+                    <hr>
+                    <label for="noCopies">Number of Copies</label>
+                    <select class="form-control" name="numberOfCopies" id="noCopies">
+                      <option selected>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                    <hr>
+                  </div>
 
-                  <div class="QRcode" >
-                    <div id="QRCode" class="text-center"style="display: none"></div>
+
+                  <div class="form-group" id="draft">
+                    <!-- Print Color -->
+                    <hr>
+                    <input type="radio" name="color" value="10">
+                    <label for="BW">Black & White &nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" name="color" value="20">
+                    <label for="color">Color</label><br>
+                    <hr>
+
+                    <!-- Single/Double Sided -->
+                    <input type="radio" name="sides" value="1">
+                    <label for="singleSided">Single Sided &nbsp;&nbsp;</label>
+                    <input type="radio" name="sides" value="2">
+                    <label for="doubleSided">Double Sided</label><br>
+                    <input type="radio" name="sides" value="3">
+                    <label for="doubleSided">Initial Pages (Single Sided) + Other Pages (Double Sided)</label><br>
+                    <hr>
+
+                    <!-- Spiral Bind Color -->
+                    <label for="collegeName">Spiral Bind Color</label>
+                    <select class="form-control" name="bindingColor" id="spiralBindColor">
+                      <option>Light Yellow</option>
+                      <option>Light Blue</option>
+                      <option>Light Pink</option>
+                      <option>Light Green</option>
+                      <option>None</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group ">
+                    <a class="get-started-btn" id="upload-button" style="margin-left: 5px;margin-right: 10px;">Select
+                      File</a>
+                    <input type="file" id="file-input" style="display: none;" accept=".pdf" />
+                  </div>
+
+                  <div class="form-group col-md-8">
+                    <input type="text" class="form-control" name="fileNameActual" id="fileNameActual" disabled />
                   </div>
 
                 </div>
-              </div>
+
+                <div class="form-row">
+                  <div id="Cost" style="font-size: large;display: none;">
+                  </div>
 
 
+                  <div class="grid-container">
 
-              <div class="form-group">
-                <label for="transactionId">12 Digit UPI Transaction ID (UTR)</label>
-                <input type="text" class="form-control" name="transactionId" data-rule="lenRange:12,12"
-                  data-msg="Please fill the 12 digit Transaction ID" />
-                <div class="validate"></div>
-              </div>
+                    <input type="hidden" class="form-control" name="fileName" id="fileName" value="" />
+                    <input type="hidden" class="form-control" name="numberOfPages" id="numberOfPages" value="" />
+                    <input type="hidden" class="form-control" name="cost" id="cost" value="" />
 
-              <div class="form-group">
-                <input type="checkbox"  value="Bike" id="tandc">
-                <label for="tandc">I have read and I agree with the <a href="tandc.html">terms and
-                    conditions</a>.</label><br>
-              </div>
+                    <div class="Payment">
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <img src="assets/img/UPILogo.png" alt="Workflow Diagram"
+                            style="object-fit: contain;width: 100%;">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <button class="get-started-btn text-center" id="pay-button"
+                            style="margin-left: 0px;">Pay</button>
+                        </div>
+                      </div>
+                      <div class="Cost">
+                        <br><strong>
+                          <div id="uniqueFileNameLabel" style="font-size: large;"></div>
+                        </strong>
+                        <br><strong>
+                          <div id="vpa" style="font-size: large;" di></div>
+                        </strong>
+                      </div>
+                    </div>
 
-              <div class="form-group text-center">
-                <button type="submit" id="submit-button" method="post">Submit</button>
-              </div>
-              <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message">Oops! There seems to be a networking issue.</div>
-                <div class="sent-message">Awesome! Your submission has been recorded. You will recieve an email
-                  shortly.
+
+                    <div class="QRcode">
+                      <div id="QRCode" class="text-center" style="display: none"></div>
+                    </div>
+
+                  </div>
                 </div>
-              </div>
+
+
+
+                <div class="form-group">
+                  <label for="transactionId">12 Digit UPI Transaction ID (UTR)</label>
+                  <input type="text" class="form-control" name="transactionId" data-rule="lenRange:12,12"
+                    data-msg="Please fill the 12 digit Transaction ID" />
+                  <div class="validate"></div>
+                </div>
+
+                <div class="form-group">
+                  <input type="checkbox" value="Bike" id="tandc">
+                  <label for="tandc">I have read and I agree with the <a href="tandc.html" target="_blank">terms and
+                      conditions</a>.</label><br>
+                </div>
+
+
+
+                <div class="form-group text-center">
+                  <button type="submit" id="submit-button" method="post">Submit</button>
+                </div>
+                <div class="mb-3">
+                  <div class="loading">Loading</div>
+                  <div class="error-message">Oops! There seems to be a networking issue.</div>
+                  <div class="sent-message">Awesome! Your submission has been recorded. You will recieve an email
+                    shortly.
+                  </div>
+                </div>
             </form>
 
           </div>
@@ -320,7 +355,8 @@
 
     <div class="container footer-top">
       <div class="copyright">
-        &copy; Copyright <strong><span>RemotePrint.tools</span></strong>. All Rights Reserved <strong>Contact us at remoteprint.tools@gmail.com<strong>
+        &copy; Copyright <strong><span>RemotePrint.tools</span></strong>. All Rights Reserved <strong>Contact us at
+          remoteprint.tools@gmail.com<strong>
       </div>
     </div>
   </footer><!-- End Footer -->
@@ -352,19 +388,19 @@
     const formatingOptions = document.getElementById("formatingOptions")
     const draft = document.getElementById("draft");
     const final = document.getElementById("final");
-    const finalCopyOption=document.getElementById("finalCopyOption");
-    var x = document.getElementById("tandc").required=true;
-    var numberOfCopies=document.getElementById("noCopies");
+    const finalCopyOption = document.getElementById("finalCopyOption");
+    var x = document.getElementById("tandc").required = true;
+    var numberOfCopies = document.getElementById("noCopies");
     var fileName;
     var count = 1;
     var cost;
-    var upiName='aditya.sreerama';
-    var bankName='ybl';
+    var upiName = 'aditya.sreerama';
+    var bankName = 'ybl';
     draft.style.display = 'none';
     final.style.display = 'none';
     submitButton.disabled = true;
     payButton.disabled = true;
-    var isCountUpdated=false;
+    var isCountUpdated = false;
 
     //Event Listeners
     selectButton.addEventListener("click", () => fileInput.click());
@@ -372,22 +408,22 @@
 
     var color = document.getElementsByName('color');
     for (var i = 0; i < color.length; i++) {
-      color[i].onclick = function() {
+      color[i].onclick = function () {
         calculateCost()
       }
     }
     var printType = document.getElementsByName('printType');
-    
+
 
     var sides = document.getElementsByName('sides');
     for (var i = 0; i < sides.length; i++) {
-      sides[i].onclick = function() {
+      sides[i].onclick = function () {
         calculateCost()
-        
+
       }
     }
 
-    
+
     for (var i = 0; i < printType.length; i++) {
       printType[i].onclick = function () {
         openSesame()
@@ -401,7 +437,7 @@
           printTypeValue = printType[i].value;
         }
       }
-      
+
       if (printTypeValue == "draftCopy") {
         draft.style.display = ''
         final.style.display = 'none'
@@ -433,16 +469,17 @@
       setFileName()
       uploadFiles()
       generateQRCode()
-      document.getElementById("QRCode").style.display=''
+      document.getElementById("QRCode").style.display = ''
       submitButton.disabled = false;
       payButton.disabled = true;
-      document.getElementById("vpa").innerHTML='VPA : aditya.sreerama@ybl'
+      document.getElementById("vpa").innerHTML = 'VPA : aditya.sreerama@ybl'
       disableRadioButtons()
     }
+
     function disableRadioButtons() {
       var color = document.getElementsByName('color');
       for (var i = 0; i < color.length; i++) {
-        color[i].readOnly=true;
+        color[i].readOnly = true;
       }
 
     }
@@ -455,22 +492,22 @@
     }
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.js';
     fileSelector.addEventListener('change', (event) => {
-      isCountUpdated=false;
+      isCountUpdated = false;
       const fileList = event.target.files;
       var reader = new FileReader();
       var file = event.target.files[0];
       reader.readAsBinaryString(fileList[0]);
       var fileReader = new FileReader();
       fileReader.readAsArrayBuffer(file);
-      
-      fileReader.onload = function() {
+
+      fileReader.onload = function () {
         var typedarray = new Uint8Array(this.result);
         const loadingTask = pdfjsLib.getDocument(typedarray);
         loadingTask.promise.then(pdf => {
-          count=pdf._pdfInfo.numPages
-          isCountUpdated=true;
+          count = pdf._pdfInfo.numPages
+          isCountUpdated = true;
           document.getElementById("numberOfPages").value = count
-          console.log("Number of Pages from moz: "+count);
+          console.log("Number of Pages from moz: " + count);
           calculateCost();
         })
       }
@@ -479,7 +516,7 @@
       resetPaymentInfo();
       reader.onloadend = function () {
         countOld = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
-        
+
         console.log('Number of Pages:', countOld);
         document.getElementById("fileNameActual").value = fileInput.files[0].name
         document.getElementById("numberOfPages").value = count
@@ -502,36 +539,35 @@
 
     function resetPaymentInfo() {
       costLabel.innerHTML = '';
-      document.getElementById("QRCode").style.display='none';
+      document.getElementById("QRCode").style.display = 'none';
       document.getElementById("uniqueFileNameLabel").innerHTML = ''
-      document.getElementById("vpa").innerHTML=''
+      document.getElementById("vpa").innerHTML = ''
 
 
     }
-    document.getElementById("spiralBindColor").onchange=function () {
+    document.getElementById("spiralBindColor").onchange = function () {
       calculateCost()
     }
-    numberOfCopies.onchange=function()
-    {
+    numberOfCopies.onchange = function () {
       calculateCost()
     }
 
     function calculateCost() {
-     
+
       var spiralBindCost = 30
       var costMap = new Map()
       var bw1sps = 1.5
       var bw2sps = 1
       var c1sps = 5.5
       var c2sps = 4
-      var surcharge=5
-      spiralBindCost=(document.getElementById("spiralBindColor").value=="None")?0:30;
-      var baseCharge=30;
-      var c1spsf=5
-      var t1spsf=5
-      var hardBind=65
-      var frontPage=10
-      
+      var surcharge = 5
+      spiralBindCost = (document.getElementById("spiralBindColor").value == "None") ? 0 : 30;
+      var baseCharge = 30;
+      var c1spsf = 5
+      var t1spsf = 5
+      var hardBind = 65
+      var frontPage = 10
+
 
       costMap.set("101", bw1sps)
       costMap.set("102", bw2sps)
@@ -559,16 +595,17 @@
       if (typeValue != "103" && typeValue != "203") {
         cost = count * costMap.get(colorValue + sidesValue) + spiralBindCost
       } else {
-        cost = 12*costMap.get(colorValue + "1") + (count-12)*costMap.get(colorValue + "2") + spiralBindCost+surcharge
+        cost = 12 * costMap.get(colorValue + "1") + (count - 12) * costMap.get(colorValue + "2") + spiralBindCost +
+          surcharge
       }
 
-      if (cost<=30)
-      {  cost=baseCharge;}
-      if(finalCopyOption.checked&&isCountUpdated)
-      {
-        cost=(((count)*c1spsf)+15*t1spsf+hardBind+frontPage)*numberOfCopies.value;
+      if (cost <= 30) {
+        cost = baseCharge;
       }
-      cost=cost.toFixed(2);
+      if (finalCopyOption.checked && isCountUpdated) {
+        cost = (((count) * c1spsf) + 15 * t1spsf + hardBind + frontPage) * numberOfCopies.value;
+      }
+      cost = cost.toFixed(2);
       costLabel.innerHTML = '<strong>  Estimated Cost : &#8377 ' + cost + '</strong>';
       document.getElementById("cost").value = cost
       generateQRCode()

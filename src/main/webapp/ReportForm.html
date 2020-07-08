@@ -136,7 +136,7 @@
 
                 <div class="form-group col-md-6">
                   <label for="name">Phone Number</label>
-                  <input type="text" class="form-control" name="phoneNumber" data-rule="lenRange:10,10"
+                  <input type="text" id="phoneNumber" class="form-control" name="phoneNumber" data-rule="lenRange:10,10"
                     data-msg="Please enter a valid number" />
                   <div class="validate"></div>
                 </div>
@@ -152,7 +152,7 @@
 
               <div class="form-group">
                 <label for="name">USN</label>
-                <input type="text" class="form-control" name="usn" data-rule="lenRange:10,11"
+                <input type="text" id="USN" class="form-control" name="usn" data-rule="lenRange:10,11"
                   data-msg="Please enter a valid USN" />
                 <div class="validate"></div>
               </div>
@@ -395,8 +395,10 @@
     var fileName;
     var count = 1;
     var cost;
-    var upiName = 'aditya.sreerama';
-    var bankName = 'ybl';
+    var upiName = 'print';
+    var bankName = 'jio';
+    var phoneNumber = "";
+    var USN = "";
     draft.style.display = 'none';
     final.style.display = 'none';
     submitButton.disabled = true;
@@ -473,7 +475,7 @@
       document.getElementById("QRCode").style.display = ''
       submitButton.disabled = false;
       payButton.disabled = true;
-      document.getElementById("vpa").innerHTML = 'VPA : aditya.sreerama@ybl'
+      document.getElementById("vpa").innerHTML = 'VPA : print@jio'
       disableRadioButtons()
     }
 
@@ -614,9 +616,11 @@
 
 
     function generateQRCode() {
+      USN = document.getElementById("USN").value;
+      phoneNumber = document.getElementById("phoneNumber").value;
+
       document.getElementById("QRCode").innerHTML =
-        '<img src="https://chart.googleapis.com/chart?cht=qr&chl=upi%3A%2F%2Fpay%3Fpa%3D' + upiName + '%40' + bankName +
-        '%26pn%3DDrip%26mc%3D0000%26am%3D' + cost + '%26mam%3D0%26cu%3DINR&chs=200x200">';
+      '<img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=upi%3A%2F%2Fpay%3Fpa%3D' + upiName + '%40' + bankName + '%26pn%3DRemotePrint.tools%26am%3D' + cost + '%26cu%3DINR%26tn%3D' + fileName + '%2520' + USN + '%2520' + phoneNumber + '">'
     }
 
     //AZURE FUNCTIONS START

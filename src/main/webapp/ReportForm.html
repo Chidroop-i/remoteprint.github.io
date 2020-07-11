@@ -166,9 +166,20 @@
 
               <div class="form-group">
                 <label for="name">Department</label>
-                <input type="text" class="form-control" name="department" data-rule="lenRange:3,30"
-                  data-msg="Please fill this field" />
-                <div class="validate"></div>
+                <select class="form-control" name="department">
+                  <option selected>Computer Science and Engineering</option>
+                  <option>Electronics and Communication Engineering</option>
+                  <option>Information Science and Engineering</option>
+                  <option>Aerospace Engineering</option>
+                  <option>Biotechnology</option>
+                  <option>Chemical Engineering</option>
+                  <option>Civil Engineering</option>
+                  <option>Electrical and Electronics Engineering</option>
+                  <option>Electronics and Instrumentation Engineering</option>
+                  <option>Industrial Engineering and Management</option>
+                  <option>Mechanical Engineering</option>
+                  <option>Telecommunication Engineering</option>
+                </select>
               </div>
 
               <div id="formatingOptions" class="form-group" disabled>
@@ -181,9 +192,9 @@
                   <label for="singleSided">Draft Copy &nbsp;&nbsp;</label>
                   <input type="radio" id="finalCopyOption" name="printType" value="finalCopy">
                   <label for="doubleSided">Final Copy (CSE)</label><button type="button" class="btn btn-link"
-                      data-toggle="modal" data-target="#exampleModalCenter"><sup>
-                      <img src="assets/img/info.svg"</sup>
-                    </button>
+                    data-toggle="modal" data-target="#exampleModalCenter"><sup>
+                      <img src="assets/img/info.svg"></sup>
+                  </button>
 
                   <!-- Modal -->
                   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -197,7 +208,9 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                          Final Copy is currently available only for CSE as the format has been confirmed by the Department. The <strong>Final Copy</strong> option has the following formatting by default: <br><br>
+                          Final Copy is currently available for CSE as the format has been confirmed by the
+                          Department. The <strong>Final Copy</strong> option has the following formatting by default:
+                          <br><br>
                           <ul>
                             <li>A4 Size Bond Sheets</li>
                             <li>Single Sided</li>
@@ -304,7 +317,10 @@
 
 
                     <div class="QRcode">
-                      <div id="QRCode" class="text-center" style="display: none"></div>
+                      <a
+                        href="upi://pay?pa=print@jio&pn=RemotePrint.tools&am=100.00&cu=INR&tn=unique-code%20Name%201RV16IS003">
+                        <div id="QRCode" class="text-center" style="display: none"></div>
+                      </a>
                     </div>
 
                   </div>
@@ -620,7 +636,9 @@
       phoneNumber = document.getElementById("phoneNumber").value;
 
       document.getElementById("QRCode").innerHTML =
-      '<img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=upi%3A%2F%2Fpay%3Fpa%3D' + upiName + '%40' + bankName + '%26pn%3DRemotePrint.tools%26am%3D' + cost + '%26cu%3DINR%26tn%3D' + fileName + '%2520' + USN + '%2520' + phoneNumber + '">'
+        '<img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=upi%3A%2F%2Fpay%3Fpa%3D' + upiName +
+        '%40' + bankName + '%26pn%3DRemotePrint.tools%26am%3D' + cost + '%26cu%3DINR%26tn%3D' + fileName + '%2520' +
+        USN + '%2520' + phoneNumber + '">'
     }
 
     //AZURE FUNCTIONS START

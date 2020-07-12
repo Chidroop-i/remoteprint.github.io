@@ -68,6 +68,12 @@
     .closebtn:hover {
       color: black;
     }
+
+    .nav-pills .nav-link.active {
+      background-color: #5992DD;
+    }
+
+    
   </style>
 
 </head>
@@ -128,7 +134,7 @@
 
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="name">Your Email</label>
+                  <label for="name">Email</label>
                   <input type="email" class="form-control" name="email" data-rule="email"
                     data-msg="Please enter a valid email" />
                   <div class="validate"></div>
@@ -136,14 +142,19 @@
 
                 <div class="form-group col-md-6">
                   <label for="name">Phone Number</label>
-                  <input type="text" id="phoneNumber" class="form-control" name="phoneNumber" data-rule="lenRange:10,10"
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">+91</div>
+                    </div>
+                    <input type="text" id="phoneNumber" class="form-control" name="phoneNumber" data-rule="lenRange:10,10"
                     data-msg="Please enter a valid number" />
+                  </div>
                   <div class="validate"></div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="collegeName">Select College</label>
+                <label for="collegeName">College</label>
                 <select class="form-control" name="college" id="collegeName">
                   <option>RV College of Engineering®</option>
                 </select>
@@ -152,8 +163,8 @@
 
               <div class="form-group">
                 <label for="name">USN</label>
-                <input type="text" id="USN" class="form-control" name="usn" data-rule="lenRange:10,11"
-                  data-msg="Please enter a valid USN" />
+                <input onchange="generateQRCode()" type="text" id="USN" class="form-control" name="usn"
+                  data-rule="lenRange:10,11" data-msg="Please enter a valid USN" />
                 <div class="validate"></div>
               </div>
 
@@ -166,7 +177,7 @@
 
               <div class="form-group">
                 <label for="name">Department</label>
-                <select class="form-control" name="department">
+                <select id="department" onclick="updateModalMessage()" class="form-control" name="department">
                   <option selected>Computer Science and Engineering</option>
                   <option>Electronics and Communication Engineering</option>
                   <option>Information Science and Engineering</option>
@@ -191,8 +202,8 @@
                   <input type="radio" name="printType" value="draftCopy">
                   <label for="singleSided">Draft Copy &nbsp;&nbsp;</label>
                   <input type="radio" id="finalCopyOption" name="printType" value="finalCopy">
-                  <label for="doubleSided">Final Copy (CSE)</label><button type="button" class="btn btn-link"
-                    data-toggle="modal" data-target="#exampleModalCenter"><sup>
+                  <label for="doubleSided">Final Copy (CSE & ECE)</label><button type="button" class="btn btn-link"
+                    data-toggle="modal" style="padding: 0px; padding-left: 3px;" data-target="#exampleModalCenter"><sup>
                       <img src="assets/img/info.svg"></sup>
                   </button>
 
@@ -202,12 +213,21 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle">Final Copy</h5>
+                          <h5 class="modal-title" id="exampleModalLongTitle">Final Copy Formatting</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                        <div class="modal-body">
+                        <div id="finalCopyModalMessage" class="modal-body">
+                          <ul " class=" nav nav-pills nav-fill border style"
+                            style="border-radius: 4px; border-color: #dfdfdf; margin: 10px;">
+                            <li class="nav-item">
+                              <a class="nav-link active" onclick="updateModalMessageCSE()">CSE</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" onclick="updateModalMessageECE()">ECE</a>
+                            </li>
+                          </ul>
                           Final Copy is currently available for CSE as the format has been confirmed by the
                           Department. The <strong>Final Copy</strong> option has the following formatting by default:
                           <br><br>
@@ -493,6 +513,27 @@
       payButton.disabled = true;
       document.getElementById("vpa").innerHTML = 'VPA : adityasreerama@ybl'
       disableRadioButtons()
+    }
+
+    function updateModalMessage() {
+      var department = document.getElementById("department").value
+      if (department == "Computer Science and Engineering") {
+        updateModalMessageCSE()
+      }
+      if (department == "Electronics and Communication Engineering") {
+        updateModalMessageECE()
+      }
+    }
+
+
+    function updateModalMessageECE() {
+      document.getElementById("finalCopyModalMessage").innerHTML =
+        '<ul " class=" nav nav-pills nav-fill border" style="border-radius: 4px; border-color: #dfdfdf; margin: 10px;"> <li class="nav-item"> <a class="nav-link" onclick="updateModalMessageCSE()">CSE</a> </li><li class="nav-item"> <a class="nav-link active" onclick="updateModalMessageECE()">ECE</a> </li></ul> Final Copy is currently available for ECE as the format has been confirmed by the Department. The <strong>Final Copy</strong> option has the following formatting by default: <br><br><ul> <li>A4 Size Bond Sheets</li><li>Single Sided</li><li>Color Print for all pages</li><li>OHP Sheets for Certificates and Chapters</li><li>Hard Binding with Light Pink Cover</li></ul>'
+    }
+
+    function updateModalMessageCSE() {
+      document.getElementById("finalCopyModalMessage").innerHTML =
+        '<ul " class=" nav nav-pills nav-fill border" style="border-radius: 4px; border-color: #dfdfdf; margin: 10px;"> <li class="nav-item"> <a class="nav-link active" onclick="updateModalMessageCSE()">CSE</a> </li><li class="nav-item"> <a class="nav-link" onclick="updateModalMessageECE()">ECE</a> </li></ul> Final Copy is currently available for CSE as the format has been confirmed by the Department. The <strong>Final Copy</strong> option has the following formatting by default: <br><br><ul> <li>A4 Size Bond Sheets</li><li>Single Sided</li><li>Color Print for all pages</li><li>OHP Sheets for Certificates and Chapters</li><li>Hard Binding with Light Blue Cover</li></ul>'
     }
 
     function disableRadioButtons() {

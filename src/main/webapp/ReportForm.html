@@ -197,9 +197,11 @@
 
                 <div class="form-group" style=" margin-bottom: 0;">
                   <!-- Print Type  -->
-                  <input type="radio" name="printType" value="draftCopy">
+                  <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="printType"
+                    value="draftCopy">
                   <label for="singleSided">Draft Copy &nbsp;&nbsp;</label>
-                  <input type="radio" id="finalCopyOption" name="printType" value="finalCopy">
+                  <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" id="finalCopyOption"
+                    name="printType" value="finalCopy">
                   <label for="doubleSided">Final Copy (CSE & ECE)</label><button type="button" class="btn btn-link"
                     data-toggle="modal" style="padding: 0px; padding-left: 3px;" data-target="#exampleModalCenter"><sup>
                       <img src="assets/img/info.svg"></sup>
@@ -262,19 +264,19 @@
 
                   <div class="form-group" id="draft" style="margin-bottom: 0;">
                     <!-- Print Color -->
-                    <input type="radio" name="color" value="10">
-                    <label for="BW">Black & White &nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <input type="radio" name="color" value="20">
+                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="color" value="10">
+                    <label for="BW">Black & White &nbsp;&nbsp;&nbsp;&nbsp;</label><br>
+                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="color" value="20">
                     <label for="color">Color</label><br>
                     <hr>
 
                     <!-- Single/Double Sided -->
-                    <input type="radio" name="sides" value="1">
-                    <label for="singleSided">Single Sided &nbsp;&nbsp;</label>
-                    <input type="radio" name="sides" value="2">
+                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides" value="1">
+                    <label for="singleSided">Single Sided &nbsp;&nbsp;</label><br>
+                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides" value="2">
                     <label for="doubleSided">Double Sided</label><br>
-                    <input type="radio" name="sides" value="3">
-                    <label for="doubleSided">Initial Pages (Single Sided) + Other Pages (Double Sided)</label><br>
+                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides" value="3">
+                    <label for="doubleSided">Initial Pages ( 1 Sided ) + Other Pages ( 2 Sided )</label><br>
                     <hr>
 
                     <!-- Spiral Bind Color -->
@@ -291,23 +293,22 @@
                 </div>
 
                 <div class="form-row">
-                  <div class="form-group ">
-                    <button class="get-started-btn" id="upload-button" style="margin-left: 5px;margin-right: 10px;"
-                      type="button">Select
+                  <div class="form-group col-md-3 ">
+                    <button class="get-started-btn btn-block" id="upload-button"
+                      style=" margin-left: 0px;margin-right: 10px; padding: 11px;" type="button">Select
                       File</button>
                     <input type="file" id="file-input" style="display: none;" accept=".pdf" />
                   </div>
 
-                  <div class="form-group col-md-8">
-                    <input type="text" class="form-control" name="fileNameActual" id="fileNameActual" disabled />
+                  <div class="form-group col-md-9">
+                    <input style="padding: 10px;" type="text" class="form-control" name="fileNameActual"
+                      id="fileNameActual" disabled />
                   </div>
-
                 </div>
 
                 <div class="form-row">
                   <div id="Cost" style="font-size: large;display: none;">
                   </div>
-
 
                   <div class="grid-container">
 
@@ -357,7 +358,7 @@
                 </div>
 
                 <div class="form-group">
-                  <input type="checkbox" value="Bike" id="tandc">
+                  <input type="checkbox" value="Bike" id="tandc" style="height: 1em; width: 1.5em; margin: 5px;">
                   <label for="tandc">I have read and I agree with the <a href="tandc.html" target="_blank">terms and
                       conditions</a>.</label><br>
                 </div>
@@ -365,7 +366,8 @@
 
 
                 <div class="form-group text-center">
-                  <button type="submit" id="submit-button" method="post">Submit</button>
+                  <button class="btn btn-primary btn-block" style="margin-left: 0;" type="submit" id="submit-button"
+                    method="post">Submit</button>
                 </div>
                 <div class="mb-3">
                   <div class="loading">Loading</div>
@@ -528,17 +530,19 @@
 
 
     function updateModalMessageCSE() {
-      document.getElementById("modalNavPill").innerHTML = '<li class="nav-item"> <a id="cseOption" class="nav-link active" onclick="updateModalMessageCSE()">CSE</a> </li><li class="nav-item"> <a id="eceOption" class="nav-link" onclick="updateModalMessageECE()">ECE</a> </li>'
+      document.getElementById("modalNavPill").innerHTML =
+        '<li class="nav-item"> <a id="cseOption" class="nav-link active" onclick="updateModalMessageCSE()">CSE</a> </li><li class="nav-item"> <a id="eceOption" class="nav-link" onclick="updateModalMessageECE()">ECE</a> </li>'
 
       document.getElementById("modalMessage").innerHTML =
         'Final Copy is currently available for CSE as the format has been confirmed by the Department. The <strong>Final Copy</strong> option has the following formatting by default: <br><br><ul> <li>A4 Size Bond Sheets</li><li>Single Sided</li><li>Color Print for all pages</li><li>OHP Sheets for Certificates and Chapters</li><li>Hard Binding with Light Pink Cover and Transaprent Jacket</li></ul>'
     }
 
     function updateModalMessageECE() {
-      document.getElementById("modalNavPill").innerHTML = '<li class="nav-item"> <a id="cseOption" class="nav-link" onclick="updateModalMessageCSE()">CSE</a> </li><li class="nav-item"> <a id="eceOption" class="nav-link active" onclick="updateModalMessageECE()">ECE</a> </li>'
+      document.getElementById("modalNavPill").innerHTML =
+        '<li class="nav-item"> <a id="cseOption" class="nav-link" onclick="updateModalMessageCSE()">CSE</a> </li><li class="nav-item"> <a id="eceOption" class="nav-link active" onclick="updateModalMessageECE()">ECE</a> </li>'
 
       document.getElementById("modalMessage").innerHTML =
-        'Final Copy is currently available for CSE as the format has been confirmed by the Department. The <strong>Final Copy</strong> option has the following foratting by default: <br><br><ul> <li>A4 Size Bond Sheets</li><li>Single Sided</li><li>Color Print for all pages</li><li>OHP Sheets for <ul><li>Cover Page</li><li>College Certificate</li><li>Internship Certificate</li><li>Declaration</li><li>All Chapters</li></ul></li><li>Hard Binding with Sky Blue Cover and Transparent Jacket</li></ul>'
+        'Final Copy is currently available for ECE as the format has been confirmed by the Department. The <strong>Final Copy</strong> option has the following foratting by default: <br><br><ul> <li>A4 Size Bond Sheets</li><li>Single Sided</li><li>Color Print for all pages</li><li>OHP Sheets for <ul><li>Cover Page</li><li>College Certificate</li><li>Internship Certificate</li><li>Declaration</li><li>All Chapters</li></ul></li><li>Hard Binding with Sky Blue Cover and Transparent Jacket</li></ul>'
     }
 
     function disableRadioButtons() {

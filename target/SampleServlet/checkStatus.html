@@ -77,6 +77,10 @@
             border-radius: 6px;
         }
 
+        .contact .php-email-form button[type="submit"] {
+            background: #5992DD;
+        }
+
     </style>
     
 </head>
@@ -113,7 +117,7 @@
                         <form form action="submit" method="post" role="form" class="php-email-form">
                             <div class="form-row">
                                 <div class="form-group col-md-8">
-                                    <label for="name">Unique Code</label>
+                                    <label for="name">Invoice ID</label>
                                     <input type="text" class="form-control" id="uniqueCode"
                                         data-rule="regexp:[a-z][a-z][a-z][a-z]-[a-z][a-z][a-z][a-z]$"
                                         data-msg="Please Enter code in the correct format" />

@@ -13,6 +13,10 @@ body {
   color: #444444;
 }
 
+.info {
+  fill: #3672C1;
+}
+
 a {
   color: #1699DF;
 }
@@ -1103,6 +1107,7 @@ section {
   height: 44px;
   
 }
+
 
 .contact .php-email-form textarea {
   padding: 10px 12px;

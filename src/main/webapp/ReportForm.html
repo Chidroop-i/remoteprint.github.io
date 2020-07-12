@@ -72,8 +72,6 @@
     .nav-pills .nav-link.active {
       background-color: #5992DD;
     }
-
-    
   </style>
 
 </head>
@@ -146,8 +144,8 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text">+91</div>
                     </div>
-                    <input type="text" id="phoneNumber" class="form-control" name="phoneNumber" data-rule="lenRange:10,10"
-                    data-msg="Please enter a valid number" />
+                    <input type="text" id="phoneNumber" class="form-control" name="phoneNumber"
+                      data-rule="lenRange:10,10" data-msg="Please enter a valid number" />
                   </div>
                   <div class="validate"></div>
                 </div>
@@ -197,7 +195,7 @@
                 <label for="name">Formatting Options</label>
                 <hr>
 
-                <div class="form-group">
+                <div class="form-group" style=" margin-bottom: 0;">
                   <!-- Print Type  -->
                   <input type="radio" name="printType" value="draftCopy">
                   <label for="singleSided">Draft Copy &nbsp;&nbsp;</label>
@@ -206,6 +204,7 @@
                     data-toggle="modal" style="padding: 0px; padding-left: 3px;" data-target="#exampleModalCenter"><sup>
                       <img src="assets/img/info.svg"></sup>
                   </button>
+                  <hr>
 
                   <!-- Modal -->
                   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -246,8 +245,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group" id="final">
-                    <hr>
+                  <div class="form-group" id="final" style="margin-bottom: 0;">
                     <label for="noCopies">Number of Copies</label>
                     <select class="form-control" name="numberOfCopies" id="noCopies">
                       <option selected>1</option>
@@ -260,9 +258,8 @@
                   </div>
 
 
-                  <div class="form-group" id="draft">
+                  <div class="form-group" id="draft" style="margin-bottom: 0;">
                     <!-- Print Color -->
-                    <hr>
                     <input type="radio" name="color" value="10">
                     <label for="BW">Black & White &nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <input type="radio" name="color" value="20">
@@ -287,13 +284,15 @@
                       <option>Light Green</option>
                       <option>None</option>
                     </select>
+                    <hr>
                   </div>
                 </div>
 
                 <div class="form-row">
                   <div class="form-group ">
-                    <a class="get-started-btn" id="upload-button" style="margin-left: 5px;margin-right: 10px;">Select
-                      File</a>
+                    <button class="get-started-btn" id="upload-button"
+                      style="margin-left: 5px;margin-right: 10px;" type="button">Select
+                      File</button>
                     <input type="file" id="file-input" style="display: none;" accept=".pdf" />
                   </div>
 
@@ -546,7 +545,7 @@
 
     function setFileName() {
       var fileNameText = document.getElementById("uniqueFileNameLabel")
-      fileNameText.innerHTML = "Unique ID : " + fileName;
+      fileNameText.innerHTML = "Invoice ID :" + fileName;
       var fileNameInput = document.getElementById("fileName");
       fileNameInput.value = fileName;
     }

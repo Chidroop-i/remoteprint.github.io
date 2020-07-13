@@ -16,7 +16,7 @@
   </script>
 
   <meta charset="utf-8">
-  <meta name="viewport" content= "width=device-width, user-scalable=no">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
 
   <title>RemotePrint.tools</title>
   <meta content="" name="descriptison">
@@ -38,6 +38,9 @@
   <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sahitya:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.js"> </script>
   <style>
     .alertSuccess {
@@ -71,6 +74,13 @@
 
     .nav-pills .nav-link.active {
       background-color: #5992DD;
+    }
+
+    .rupee {
+      /* font-family: 'Baloo Da 2', cursive; */
+      font-family: 'Sahitya', serif;
+      /* font-family: 'Inter', sans-serif; */
+      font-size: 28pt;
     }
   </style>
 
@@ -191,6 +201,8 @@
                 </select>
               </div>
 
+              <br>
+
               <div id="formatingOptions" class="form-group" disabled>
                 <label for="name">Formatting Options</label>
                 <hr>
@@ -293,69 +305,70 @@
                 </div>
 
                 <div class="form-row">
+                  <div class="form-group col-md-9">
+                    <input style="padding: 10px;" type="text" class="form-control" name="fileNameActual"
+                      id="fileNameActual" disabled />
+                  </div>
+
                   <div class="form-group col-md-3 ">
                     <button class="get-started-btn btn-block" id="upload-button"
                       style=" margin-left: 0px;margin-right: 10px; padding: 11px;" type="button">Select
                       File</button>
                     <input type="file" id="file-input" style="display: none;" accept=".pdf" />
                   </div>
-
-                  <div class="form-group col-md-9">
-                    <input style="padding: 10px;" type="text" class="form-control" name="fileNameActual"
-                      id="fileNameActual" disabled />
-                  </div>
                 </div>
 
-                <div class="form-row">
-                  <div id="Cost" style="font-size: large;display: none;">
-                  </div>
-
-                  <div class="grid-container">
-
+                <div>
+                  <hr>
+                  <div class="form-row text-center">
                     <input type="hidden" class="form-control" name="fileName" id="fileName" value="" />
                     <input type="hidden" class="form-control" name="numberOfPages" id="numberOfPages" value="" />
                     <input type="hidden" class="form-control" name="cost" id="cost" value="" />
 
-                    <div class="Payment">
-                      <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <img src="assets/img/UPILogo.png" alt="Workflow Diagram"
-                            style="object-fit: contain;width: 100%;">
-                        </div>
-                        <div class="form-group col-md-6">
-                          <button class="get-started-btn text-center" id="pay-button"
-                            style="margin-left: 0px;">Pay</button>
-                        </div>
-                      </div>
-                      <div class="Cost">
-                        <br><strong>
-                          <div id="uniqueFileNameLabel" style="font-size: large;"></div>
-                        </strong>
-                        <br><strong>
-                          <div id="vpa" style="font-size: large;" di></div>
-                        </strong>
-                      </div>
-                    </div>
+                    <div class="form-group col-md-8" id="Cost" style="font-size: 24pt;"></div>
 
+                    <div class="form-group col-md-4 ">
+                      <button id="pay-button" class="get-started-btn btn-block"
+                        style=" margin-left: 0px;margin-right: 10px; padding: 11px; margin-top: 5px; background-size: 5px auto;"
+                        type="button">
+                        <img src="../webapp/assets/img/UPILogoMini.webp" height="25px" width="25px" />
+                        Pay</button>
+                      <input type="file" id="file-input" style="display: none;" accept=".pdf" />
+                    </div>
+                  </div>
+                  <hr>
+                </div>
+
+                <div id="Payment">
+                  <div class="form-row">
+                    <div class="Cost">
+                      <br>
+                      <strong>
+                        <div id="uniqueFileNameLabel" style="font-size: large;"></div>
+                      </strong>
+                      <br>
+                      <strong>
+                        <div id="vpa" style="font-size: large;" di></div>
+                      </strong>
+                    </div>
 
                     <div class="QRcode">
-                      <a
-                        href="upi://pay?pa=print@jio&pn=RemotePrint.tools&am=100.00&cu=INR&tn=unique-code%20Name%201RV16IS003">
-                        <div id="QRCode" class="text-center" style="display: none"></div>
-                      </a>
+                      <div id="QRCode" class="text-center" style="display: none; margin-left: 30px;"></div>
                     </div>
-
                   </div>
+                  <br>
+                  <div class="form-group">
+                    <label for="transactionId">12 Digit UPI Transaction ID (UTR)</label>
+                    <input type="text" class="form-control" name="transactionId" data-rule="lenRange:12,12"
+                      data-msg="Please fill the 12 digit Transaction ID" />
+                    <div class="validate"></div>
+                  </div>
+                  <hr>
                 </div>
 
 
 
-                <div class="form-group">
-                  <label for="transactionId">12 Digit UPI Transaction ID (UTR)</label>
-                  <input type="text" class="form-control" name="transactionId" data-rule="lenRange:12,12"
-                    data-msg="Please fill the 12 digit Transaction ID" />
-                  <div class="validate"></div>
-                </div>
+                
 
                 <div class="form-group">
                   <input type="checkbox" value="Bike" id="tandc" style="height: 1em; width: 1.5em; margin: 5px;">
@@ -395,8 +408,8 @@
 
     <div class="container footer-top">
       <div class="copyright">
-        &copy; Copyright <strong><span>RemotePrint.tools</span></strong>. All Rights Reserved <strong>Contact us at
-          remoteprint.tools@gmail.com<strong>
+        &copy; Copyright <strong><span>RemotePrint.tools</span></strong>. All Rights Reserved Contact us at
+        <strong>remoteprint.tools@gmail.com<strong>
       </div>
     </div>
   </footer><!-- End Footer -->
@@ -507,6 +520,7 @@
     }
 
     function initiatePayment() {
+      document.getElementById("Payment").style.display = ''
       fileName = generateUniqueID()
       setFileName()
       uploadFiles()
@@ -555,7 +569,7 @@
 
     function setFileName() {
       var fileNameText = document.getElementById("uniqueFileNameLabel")
-      fileNameText.innerHTML = "Invoice ID :" + fileName;
+      fileNameText.innerHTML = "Invoice ID : " + fileName;
       var fileNameInput = document.getElementById("fileName");
       fileNameInput.value = fileName;
     }
@@ -675,7 +689,8 @@
         cost = (((count) * c1spsf) + 15 * t1spsf + hardBind + frontPage) * numberOfCopies.value;
       }
       cost = cost.toFixed(2);
-      costLabel.innerHTML = '<strong>  Estimated Cost : &#8377 ' + cost + '</strong>';
+      costLabel.innerHTML = '<strong><span class="rupee">&#8377  </span>' + cost + '</strong>'; //rupee
+
       document.getElementById("cost").value = cost
       generateQRCode()
     }

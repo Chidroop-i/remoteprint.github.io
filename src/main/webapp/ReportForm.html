@@ -82,6 +82,21 @@
       /* font-family: 'Inter', sans-serif; */
       font-size: 28pt;
     }
+
+    .grid-container {
+      display: grid;
+      padding: 0;
+      grid-template-columns: 3ch 1fr;
+      align-items: baseline;
+    }
+
+    .grid-container input {
+      grid-column-start: 1;
+    }
+
+    .grid-container label {
+      grid-column-start: 2;
+    }
   </style>
 
 </head>
@@ -154,8 +169,8 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text">+91</div>
                     </div>
-                    <input onchange="generateQRCode()" type="text" id="phoneNumber" class="form-control" name="phoneNumber"
-                      data-rule="lenRange:10,10" data-msg="Please enter a valid number" />
+                    <input onchange="generateQRCode()" type="text" id="phoneNumber" class="form-control"
+                      name="phoneNumber" data-rule="lenRange:10,10" data-msg="Please enter a valid number" />
                   </div>
                   <div class="validate"></div>
                 </div>
@@ -212,12 +227,13 @@
                   <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="printType"
                     value="draftCopy">
                   <label for="singleSided">Draft Copy &nbsp;&nbsp;</label>
-                  <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" id="finalCopyOption"
-                    name="printType" value="finalCopy">
-                  <label for="doubleSided">Final Copy (CSE & ECE)</label><button type="button" class="btn btn-link"
-                    data-toggle="modal" style="padding: 0px; padding-left: 3px;" data-target="#exampleModalCenter"><sup>
-                      <img src="assets/img/info.svg"></sup>
-                  </button>
+                  <label for="doubleSided" style=" display:inline-block">
+                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" id="finalCopyOption"
+                      name="printType" value="finalCopy">
+                    Final Copy (CSE & ECE)<button type="button" class="btn btn-link" data-toggle="modal"
+                      style="padding: 0px; padding-left: 3px;" data-target="#exampleModalCenter"><sup>
+                        <img src="assets/img/info.svg"></sup>
+                    </button></label>
                   <hr>
 
                   <!-- Modal -->
@@ -283,12 +299,15 @@
                     <hr>
 
                     <!-- Single/Double Sided -->
-                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides" value="1">
-                    <label for="singleSided">Single Sided &nbsp;&nbsp;</label><br>
-                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides" value="2">
-                    <label for="doubleSided">Double Sided</label><br>
-                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides" value="3">
-                    <label for="doubleSided">Initial Pages ( 1 Sided ) + Other Pages ( 2 Sided )</label><br>
+                    <div class="grid-container">
+                      <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides" value="1">
+                      <label for="singleSided">Single Sided &nbsp;&nbsp;</label>
+                      <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides" value="2">
+                      <label for="doubleSided">Double Sided</label>
+                      <input class="longRadio" style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides"
+                      value="3">
+                      <label>Initial Pages ( 1 Sided ) + Other Pages ( 2 Sided )</label>
+                    </div>
                     <hr>
 
                     <!-- Spiral Bind Color -->
@@ -329,11 +348,11 @@
 
                     <div class="form-group col-md-4 " style=" margin-bottom: 0;">
                       <a id="mobilePaymentLink"><button id="pay-button" class="get-started-btn btn-block"
-                        style=" margin-left: 0px;margin-right: 10px; padding: 11px; margin-top: 5px; background-size: 5px auto;"
-                        type="button">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg"
-                          height="25px" />
-                        Pay</button></a>
+                          style=" margin-left: 0px;margin-right: 10px; padding: 11px; margin-top: 5px; background-size: 5px auto;"
+                          type="button">
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg"
+                            height="25px" />
+                          Pay</button></a>
                       <input type="file" id="file-input" style="display: none;" accept=".pdf" />
                     </div>
                   </div>
@@ -459,7 +478,7 @@
     var isCountUpdated = false;
 
     if (deviceIsMobile()) {
-      document.getElementById("Payment").className = "text-center border"
+      document.getElementById("Payment").className = "text-center"
     }
 
     //Event Listeners
@@ -720,15 +739,15 @@
       var upiLink = 'upi://pay?pa=' + upiName +
         '@' + bankName + '&pn=RemotePrint.tools&am=' + cost + '&cu=INR&tn=' + fileName + ' ' +
         USN + ' ' + phoneNumber;
-        
+
       var encodedURL = encodeURIComponent(upiLink);
 
       document.getElementById("QRCode").innerHTML =
         '<img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=' + encodedURL + '">'
 
-        if (deviceIsMobile()) {
-          document.getElementById("mobilePaymentLink").href = upiLink
-        }
+      if (deviceIsMobile()) {
+        document.getElementById("mobilePaymentLink").href = upiLink
+      }
     }
 
     //AZURE FUNCTIONS START

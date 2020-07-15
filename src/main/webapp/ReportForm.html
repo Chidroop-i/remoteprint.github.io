@@ -97,7 +97,6 @@
     .grid-container label {
       grid-column-start: 2;
     }
-
   </style>
 
 </head>
@@ -201,7 +200,7 @@
 
               <div class="form-group">
                 <label for="name">Department</label>
-                <select id="department" onchange="updateModalMessage()" class="form-control" name="department">
+                <select id="department" onchange="updateForm()" class="form-control" name="department">
                   <option selected>Computer Science and Engineering</option>
                   <option>Electronics and Communication Engineering</option>
                   <option>Information Science and Engineering</option>
@@ -223,188 +222,201 @@
                 <label for="name">Formatting Options</label>
                 <hr>
 
-                <div class="form-group" style=" margin-bottom: 0;">
+
+
+                <div class="grid-container">
                   <!-- Print Type  -->
                   <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="printType"
                     value="draftCopy">
-                  <label for="singleSided">Draft Copy &nbsp;&nbsp;</label>
-                  <label for="doubleSided" style=" display:inline-block">
-                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" id="finalCopyOption"
-                      name="printType" value="finalCopy">
-                    Final Copy (CSE & ECE)<button type="button" class="btn btn-link" data-toggle="modal"
+                  <label for="singleSided">Technical Seminar / Draft Copy &nbsp;&nbsp;</label>
+
+                  <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" id="finalCopyOption"
+                    name="printType" value="finalCopy">
+                  <label for="doubleSided">Final Copy (ISE, CSE & ECE)
+                    <button type="button" class="btn btn-link" data-toggle="modal"
                       style="padding: 0px; padding-left: 3px;" data-target="#exampleModalCenter"><sup>
                         <img src="assets/img/info.svg"></sup>
-                    </button></label>
-                  <hr>
+                    </button>
+                  </label>
+                </div>
+                <hr>
 
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle">Final Copy Formatting</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div id="finalCopyModalMessage" class="modal-body">
-                          <ul id="modalNavPill" " class=" nav nav-pills nav-fill border style"
-                            style="border-radius: 4px; border-color: #dfdfdf; margin: 10px;">
-                            <li class="nav-item">
-                              <a id="cseOption" class="nav-link active" onclick="updateModalMessageCSE()">CSE</a>
-                            </li>
-                            <li class="nav-item">
-                              <a id="eceOption" class="nav-link" onclick="updateModalMessageECE()">ECE</a>
-                            </li>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Final Copy Formatting</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div id="finalCopyModalMessage" class="modal-body">
+                        <ul id="modalNavPill" " class=" nav nav-pills nav-fill border style"
+                          style="border-radius: 4px; border-color: #dfdfdf; margin: 10px;">
+                          <li class="nav-item">
+                            <a id="cseOption" class="nav-link active" onclick="updateModalMessageCSE()">CSE & ISE</a>
+                          </li>
+                          <li class="nav-item">
+                            <a id="eceOption" class="nav-link" onclick="updateModalMessageECE()">ECE</a>
+                          </li>
+                        </ul>
+                        <div id="modalMessage">
+                          Final Copy is currently available for CSE and ISE as the format has been confirmed by the
+                          Department. The <strong>Final Copy</strong> option has the following formatting by default:
+                          <br><br>
+                          <ul>
+                            <li>A4 Size Bond Sheets</li>
+                            <li>Single Sided</li>
+                            <li>Color Print for all pages</li>
+                            <li>OHP Sheets for Certificates and Chapters</li>
+                            <li>Hard Binding with Light Pink Cover and Transparent Jacket</li>
                           </ul>
-                          <div id="modalMessage">
-                            Final Copy is currently available for CSE as the format has been confirmed by the
-                            Department. The <strong>Final Copy</strong> option has the following formatting by default:
-                            <br><br>
-                            <ul>
-                              <li>A4 Size Bond Sheets</li>
-                              <li>Single Sided</li>
-                              <li>Color Print for all pages</li>
-                              <li>OHP Sheets for Certificates and Chapters</li>
-                              <li>Hard Binding with Light Pink Cover and Transaprent Jacket</li>
-                            </ul>
-                          </div>
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       </div>
                     </div>
                   </div>
-
-                  <div class="form-group" id="final" style="margin-bottom: 0;">
-                    <label for="noCopies">Number of Copies</label>
-                    <select class="form-control" name="numberOfCopies" id="noCopies">
-                      <option selected>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                    <hr>
-                  </div>
-
-
-                  <div class="form-group" id="draft" style="margin-bottom: 0;">
-                    <!-- Print Color -->
-                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="color" value="10">
-                    <label for="BW">Black & White &nbsp;&nbsp;&nbsp;&nbsp;</label><br>
-                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="color" value="20">
-                    <label for="color">Color</label><br>
-                    <hr>
-
-                    <!-- Single/Double Sided -->
-                    <div class="grid-container">
-                      <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides" value="1">
-                      <label for="singleSided">Single Sided &nbsp;&nbsp;</label>
-                      <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides" value="2">
-                      <label for="doubleSided">Double Sided</label>
-                      <input class="longRadio" style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides"
-                        value="3">
-                      <label>Initial Pages ( 1 Sided ) + Other Pages ( 2 Sided )</label>
-                    </div>
-                    <hr>
-
-                    <!-- Spiral Bind Color -->
-                    <label for="collegeName">Spiral Bind Color</label>
-                    <select class="form-control" name="bindingColor" id="spiralBindColor">
-                      <option>Light Yellow</option>
-                      <option>Light Blue</option>
-                      <option>Light Pink</option>
-                      <option>Light Green</option>
-                      <option>None</option>
-                    </select>
-                    <hr>
-                  </div>
                 </div>
 
-                <div class="form-row">
-                  <div class="form-group col-md-3 ">
-                    <button class="get-started-btn btn-block" id="upload-button"
-                      style=" margin-left: 0px;margin-right: 10px; padding: 11px;" type="button">Select
-                      File</button>
+                <div class="form-group" id="final" style="margin-bottom: 0;">
+                  <label for="noCopies">Number of Copies</label>
+                  <select class="form-control" name="numberOfCopies" id="noCopies">
+                    <option selected>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                  <hr>
+                </div>
+
+
+                <div class="form-group" id="draft" style="margin-bottom: 0;">
+                  <!-- Print Color -->
+                  <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="color" value="10"
+                    id="BWRadio">
+                  <label for="BW">Black & White</label><br>
+                  <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="color" value="20"
+                    id="colorRadio">
+                  <label for="color">Color</label><br>
+                  <hr>
+
+                  <!-- Single/Double Sided -->
+                  <div class="grid-container">
+                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides" value="1"
+                      id="singleSided">
+                    <label for="singleSided">Single Sided &nbsp;&nbsp;</label>
+                    <input style="height: 1em; width: 1.5em; margin: 5px;" type="radio" name="sides" value="2"
+                      id="doubleSided">
+                    <label for="doubleSided">Double Sided</label>
+                  </div>
+                  <hr>
+
+                  <!-- Spiral Bind Color -->
+                  <label for="collegeName">Spiral Bind Color</label>
+                  <select class="form-control" name="bindingColor" id="spiralBindColor">
+                    <option>Light Yellow</option>
+                    <option>Light Blue</option>
+                    <option selected>Light Pink</option>
+                    <option>Light Green</option>
+                    <option>None</option>
+                  </select>
+                  <hr>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-3 ">
+                  <button class="get-started-btn btn-block" id="upload-button"
+                    style=" margin-left: 0px;margin-right: 10px; padding: 11px;" type="button">Select
+                    File</button>
+                  <input type="file" id="file-input" style="display: none;" accept=".pdf" />
+                </div>
+
+                <div class="form-group col-md-9">
+                  <input style="padding: 10px;" type="text" class="form-control" name="fileNameActual"
+                    id="fileNameActual" disabled />
+                </div>
+              </div>
+
+              <div>
+                <hr>
+                <div class="form-row text-center">
+                  <input type="hidden" class="form-control" name="fileName" id="fileName" value="" />
+                  <input type="hidden" class="form-control" name="numberOfPages" id="numberOfPages" value="" />
+                  <input type="hidden" class="form-control" name="cost" id="cost" value="" />
+
+                  <div class="form-group col-md-8" id="Cost" style="font-size: 24pt; margin-bottom: 0;"></div>
+
+                  <div class="form-group col-md-4 " style=" margin-bottom: 0;">
+                    <button id="pay-button" class="get-started-btn btn-block"
+                      style=" margin-left: 0px;margin-right: 10px; padding: 11px; margin-top: 5px; background-size: 5px auto;"
+                      type="button">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg"
+                        height="25px" />
+                      Pay</button>
                     <input type="file" id="file-input" style="display: none;" accept=".pdf" />
                   </div>
+                </div>
+                <hr>
+              </div>
 
-                  <div class="form-group col-md-9">
-                    <input style="padding: 10px;" type="text" class="form-control" name="fileNameActual"
-                      id="fileNameActual" disabled />
+              <div id="Payment" style="display: none;">
+                <div class="form-row">
+                  <div class="Cost col-md-6 col-sm-12">
+                    <br>
+                    <strong>
+                      <div id="uniqueFileNameLabel" style="font-size: large;"></div>
+                    </strong>
+                    <br>
+                    <strong>
+                      <div id="vpa" style="font-size: large;"></div>
+                    </strong>
+                  </div>
+
+                  <div class="QRcode col-md-6 col-sm-12">
+                    <div id="QRCode" class="text-center" style="display: none;"></div>
                   </div>
                 </div>
-
-                <div>
-                  <hr>
-                  <div class="form-row text-center">
-                    <input type="hidden" class="form-control" name="fileName" id="fileName" value="" />
-                    <input type="hidden" class="form-control" name="numberOfPages" id="numberOfPages" value="" />
-                    <input type="hidden" class="form-control" name="cost" id="cost" value="" />
-
-                    <div class="form-group col-md-8" id="Cost" style="font-size: 24pt; margin-bottom: 0;"></div>
-
-                    <div class="form-group col-md-4 " style=" margin-bottom: 0;">
-                      <a id="mobilePaymentLink"><button id="pay-button" class="get-started-btn btn-block"
-                          style=" margin-left: 0px;margin-right: 10px; padding: 11px; margin-top: 5px; background-size: 5px auto;"
-                          type="button">
-                          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg"
-                            height="25px" />
-                          Pay</button></a>
-                      <input type="file" id="file-input" style="display: none;" accept=".pdf" />
-                    </div>
-                  </div>
-                  <hr>
-                </div>
-
-                <div id="Payment" style="display: none;">
-                  <div class="form-row">
-                    <div class="Cost col-md-6 col-sm-12">
-                      <br>
-                      <strong>
-                        <div id="uniqueFileNameLabel" style="font-size: large;"></div>
-                      </strong>
-                      <br>
-                      <strong>
-                        <div id="vpa" style="font-size: large;"></div>
-                      </strong>
-                    </div>
-
-                    <div class="QRcode col-md-6 col-sm-12">
-                      <div id="QRCode" class="text-center" style="display: none;"></div>
-                    </div>
-                  </div>
+                <div id="mobilePayment" style="display: none;" class="text-center">
+                  <a id="mobilePaymentLink"><button id="btnPayWithApp"
+                      class="get-started-btn" type="button" style="margin: 0;">Pay
+                      with UPI App</button></a>
                   <br>
-                  <div class="form-group">
-                    <label for="transactionId">12 Digit UPI Transaction ID (UTR)</label>
-                    <input type="text" class="form-control" name="transactionId" data-rule="lenRange:12,12"
-                      data-msg="Please fill the 12 digit Transaction ID" />
-                    <div class="validate"></div>
-                  </div>
-                  <hr>
                 </div>
-
                 <br>
-                <div class="grid-container">
-                  <input type="checkbox" value="Bike" id="tandc" style="height: 1em; width: 1.5em; margin: 5px;">
-                  <label for="tandc">I have read and I agree with the <a href="tandc.html" target="_blank">terms and
-                      conditions</a>.</label>
+                <div class="form-group">
+                  <label for="transactionId">12 Digit UPI Transaction ID (UTR)</label>
+                  <input type="text" class="form-control" name="transactionId" data-rule="lenRange:12,12"
+                    data-msg="Please fill the 12 digit Transaction ID" />
+                  <div class="validate"></div>
                 </div>
+                <hr>
+              </div>
 
-                <div class="form-group text-center">
-                  <button class="btn btn-primary btn-block" style="margin-left: 0;" type="submit" id="submit-button"
-                    method="post">Submit</button>
+              <br>
+              <div class="grid-container">
+                <input type="checkbox" value="Bike" id="tandc" style="height: 1em; width: 1.5em; margin: 5px;">
+                <label for="tandc">I have read and I agree with the <a href="tandc.html" target="_blank">terms and
+                    conditions.
+              </div>
+
+              <div class="form-group text-center">
+                <button class="btn btn-primary btn-block" style="margin-left: 0;" type="submit" id="submit-button"
+                  method="post">Submit</button>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message">Oops! There seems to be a networking issue.</div>
+                <div class="sent-message">Awesome! Your submission has been recorded. You will recieve an email
+                  shortly.
                 </div>
-                <div class="mb-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message">Oops! There seems to be a networking issue.</div>
-                  <div class="sent-message">Awesome! Your submission has been recorded. You will recieve an email
-                    shortly.
-                  </div>
-                </div>
+              </div>
             </form>
 
           </div>
@@ -549,35 +561,50 @@
       disableRadioButtons()
     }
 
-    function updateModalMessage() {
+    function updateForm() {
       var department = document.getElementById("department").value
+      var spiralBindColor = document.getElementById("spiralBindColor")
+      var blackandWhiteRadio = document.getElementById("BWRadio")
+      var colorRadio = document.getElementById("colorRadio")
+      var doubleSidedRadio = document.getElementById("doubleSided")
+      var singleSided = document.getElementById("singleSided")
+
       if (department == "Computer Science and Engineering") {
-        updateModalMessageCSE()
+        updateModalMessageCSE();
+        spiralBindColor.value = "Light Pink"
+        // singleSided.checked = true
+        // blackandWhiteRadio.checked = true
       }
       if (department == "Electronics and Communication Engineering") {
-        updateModalMessageECE()
+        updateModalMessageECE();
+        spiralBindColor.value = "Light Blue"
+      }
+      if (department == "Information Science and Engineering") {
+        updateModalMessageCSE();
+        spiralBindColor.value = "Light Pink"
+        // singleSided.checked = true
+        // colorRadio.checked = true
       }
     }
 
 
     function updateModalMessageCSE() {
       document.getElementById("modalNavPill").innerHTML =
-        '<li class="nav-item"> <a id="cseOption" class="nav-link active" onclick="updateModalMessageCSE()">CSE</a> </li><li class="nav-item"> <a id="eceOption" class="nav-link" onclick="updateModalMessageECE()">ECE</a> </li>'
+        '<li class="nav-item"> <a id="cseOption" class="nav-link active" onclick="updateModalMessageCSE()">CSE & ISE</a> </li><li class="nav-item"> <a id="eceOption" class="nav-link" onclick="updateModalMessageECE()">ECE</a> </li>'
 
       document.getElementById("modalMessage").innerHTML =
-        'Final Copy is currently available for CSE as the format has been confirmed by the Department. The <strong>Final Copy</strong> option has the following formatting by default: <br><br><ul> <li>A4 Size Bond Sheets</li><li>Single Sided</li><li>Color Print for all pages</li><li>OHP Sheets for Certificates and Chapters</li><li>Hard Binding with Light Pink Cover and Transaprent Jacket</li></ul>'
+        'Final Copy is currently available for CSE and ISE as the format has been confirmed by the Department. The <strong>Final Copy</strong> option has the following formatting by default: <br><br><ul> <li>A4 Size Bond Sheets</li><li>Single Sided</li><li>Color Print for all pages</li><li>OHP Sheets for Certificates and Chapters</li><li>Hard Binding with Light Pink Cover and Transparent Jacket</li></ul>'
     }
 
     function updateModalMessageECE() {
       document.getElementById("modalNavPill").innerHTML =
-        '<li class="nav-item"> <a id="cseOption" class="nav-link" onclick="updateModalMessageCSE()">CSE</a> </li><li class="nav-item"> <a id="eceOption" class="nav-link active" onclick="updateModalMessageECE()">ECE</a> </li>'
+        '<li class="nav-item"> <a id="cseOption" class="nav-link" onclick="updateModalMessageCSE()">CSE & ISE</a> </li><li class="nav-item"> <a id="eceOption" class="nav-link active" onclick="updateModalMessageECE()">ECE</a> </li>'
 
       document.getElementById("modalMessage").innerHTML =
         'Final Copy is currently available for ECE as the format has been confirmed by the Department. The <strong>Final Copy</strong> option has the following formatting by default: <br><br><ul> <li>A4 Size Bond Sheets</li><li>Single Sided</li><li>Color Print for all pages</li><li>OHP Sheets for <ul><li>Cover Page</li><li>College Certificate</li><li>Internship Certificate</li><li>Declaration</li><li>All Chapters</li></ul></li><li>Hard Binding with Sky Blue Cover and Transparent Jacket</li></ul>'
     }
 
     function deviceIsMobile() {
-
       if (
         /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i
         .test(navigator.userAgent) ||
@@ -655,12 +682,12 @@
       document.getElementById("QRCode").style.display = 'none';
       document.getElementById("uniqueFileNameLabel").innerHTML = ''
       document.getElementById("vpa").innerHTML = ''
-
-
     }
+
     document.getElementById("spiralBindColor").onchange = function () {
       calculateCost()
     }
+
     numberOfCopies.onchange = function () {
       calculateCost()
     }
@@ -671,7 +698,7 @@
       var costMap = new Map()
       var bw1sps = 1.5
       var bw2sps = 1
-      var c1sps = 5.5
+      var c1sps = 5
       var c2sps = 4
       var surcharge = 5
       spiralBindCost = (document.getElementById("spiralBindColor").value == "None") ? 0 : 30;
@@ -739,7 +766,8 @@
         '<img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=' + encodedURL + '">'
 
       if (deviceIsMobile()) {
-        document.getElementById("mobilePaymentLink").href = upiLink
+        document.getElementById("mobilePayment").style.display = '';
+        document.getElementById("mobilePaymentLink").href = upiLink;
       }
     }
 

@@ -283,18 +283,6 @@
                   </div>
                 </div>
 
-                <div class="form-group" id="final" style="margin-bottom: 0;">
-                  <label for="noCopies">Number of Copies</label>
-                  <select class="form-control" name="numberOfCopies" id="noCopies">
-                    <option selected>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                  <hr>
-                </div>
-
 
                 <div class="form-group" id="draft" style="margin-bottom: 0;">
                   <!-- Print Color -->
@@ -328,6 +316,19 @@
                   </select>
                   <hr>
                 </div>
+
+                <div class="form-group" id="numberOfCopies" style="margin-bottom: 0;">
+                  <label for="noCopies">Number of Copies</label>
+                  <select class="form-control" name="numberOfCopies" id="noCopies">
+                    <option selected>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                  <hr>
+                </div>
+
               </div>
 
               <div class="form-row">
@@ -468,7 +469,7 @@
     const costLabel = document.getElementById("Cost")
     const formatingOptions = document.getElementById("formatingOptions")
     const draft = document.getElementById("draft");
-    const final = document.getElementById("final");
+    const divNumberOfCopies = document.getElementById("numberOfCopies");
     const finalCopyOption = document.getElementById("finalCopyOption");
     var x = document.getElementById("tandc").required = true;
     var numberOfCopies = document.getElementById("noCopies");
@@ -480,7 +481,7 @@
     var phoneNumber = "";
     var USN = "";
     draft.style.display = 'none';
-    final.style.display = 'none';
+    divNumberOfCopies.style.display = 'none';
     submitButton.disabled = true;
     payButton.disabled = true;
     var isCountUpdated = false;
@@ -524,10 +525,10 @@
 
       if (printTypeValue == "draftCopy") {
         draft.style.display = ''
-        final.style.display = 'none'
+        divNumberOfCopies.style.display = ''
       } else {
         draft.style.display = 'none'
-        final.style.display = ''
+        divNumberOfCopies.style.display = ''
       }
       calculateCost()
     }
@@ -702,7 +703,7 @@
       var c2sps = 4
       var surcharge = 5
       spiralBindCost = (document.getElementById("spiralBindColor").value == "None") ? 0 : 30;
-      var baseCharge = 30;
+      var baseCharge = 20;
       var c1spsf = 5
       var t1spsf = 5
       var hardBind = 65
@@ -739,7 +740,7 @@
           surcharge
       }
 
-      if (cost <= 30) {
+      if (cost <= 20) {
         cost = baseCharge;
       }
       if (finalCopyOption.checked && isCountUpdated) {
